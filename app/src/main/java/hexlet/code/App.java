@@ -17,16 +17,19 @@ import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.util.concurrent.Callable;
 
-@Command(name = "App", mixinStandardHelpOptions = true, version = "checksum 4.0",
+@Command(name = "gendiff", mixinStandardHelpOptions = true, version = "checksum 4.0",
         description = "Compares two configuration files and shows a difference.")
 public class App implements Callable<Integer> {
 //public class App {
 
-    //@Parameters(index = "0", description = "The file whose checksum to calculate.", defaultValue = "/etc/hosts")
-    //private File file = new File("/etc/hosts");
+    @Parameters(index = "0", description = "path to first file", defaultValue = "/etc/hosts")
+    private File filepath1 = new File("/etc/hosts");
 
-    //@Option(names = {"-a", "--algorithm"}, description = "MD5, SHA-1, SHA-256, ...")
-    private String algorithm = "MD5";
+    @Parameters(index = "1", description = "path to second file", defaultValue = "/etc/hosts")
+    private File filepath2 = new File("/etc/hosts");
+
+    @Option(names = {"-f", "--format"}, description = "[default: stylish]")
+    private String format = "stylish";
 
     // this example implements Callable, so parsing, error handling and handling user
     // requests for usage help or version help can be done with one line of code.
