@@ -11,22 +11,38 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.io.File;
+import java.io.*;
 import java.math.BigInteger;
 import java.nio.file.Files;
 import java.security.MessageDigest;
+import java.sql.SQLOutput;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.Callable;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
+//import org.json.simple.parser.JSONParser;
+//import org.json.simple.parser.ParseException;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "checksum 4.0",
         description = "Compares two configuration files and shows a difference.")
 public class App implements Callable<Integer> {
 //public class App {
 
-    @Parameters(index = "0", description = "path to first file", defaultValue = "/etc/hosts")
-    private File filepath1 = new File("/etc/hosts");
+    @Parameters(index = "0", description = "path to first file", defaultValue = "/home/yakov/IdeaProjects/java-project-71/app/src/main/resources/file1.json")
+    private File filepath1 = new File("/resources/file1.json");
 
-    @Parameters(index = "1", description = "path to second file", defaultValue = "/etc/hosts")
-    private File filepath2 = new File("/etc/hosts");
+    @Parameters(index = "1", description = "path to second file", defaultValue = "/home/yakov/IdeaProjects/java-project-71/app/src/main/resources/file2.json")
+    private File filepath2 = new File("/resources/file2.json");
 
     @Option(names = {"-f", "--format"}, description = "[default: stylish]")
     private String format = "stylish";
@@ -39,8 +55,22 @@ public class App implements Callable<Integer> {
         System.exit(exitCode);
     }
 
+
+
+
     @Override
-    public Integer call() throws Exception { // your business logic goes here...
+    public Integer call() throws Exception {
+
+        var rez = Differ.generate(filepath1.toString(), filepath2.toString());
+
+        //Map<String,String> jsonMap1 = readMapFromJsonFile(filepath1.toString());
+        //Map<String,String> jsonMap2 = readMapFromJsonFile(filepath2.toString());
+
+        //System.out.println("---------- MAPs ----------");
+        //System.out.println(jsonMap1);
+        //System.out.println(jsonMap2);
+
+
         //byte[] fileContents = Files.readAllBytes(file.toPath());
         //byte[] digest = MessageDigest.getInstance(algorithm).digest(fileContents);
         //System.out.printf(algorithm + " hash of " + file.getPath() + ": %0" + (digest.length*2) + "x%n", new BigInteger(1, digest));

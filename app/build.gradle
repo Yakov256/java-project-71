@@ -15,6 +15,12 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
     implementation 'info.picocli:picocli:4.7.4'
     annotationProcessor 'info.picocli:picocli-codegen:4.7.4'
+    // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+    //implementation 'com.fasterxml.jackson.core:jackson-core:2.15.2'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
 }
 
 test {
@@ -26,6 +32,8 @@ application {
 }
 
 compileJava {
-    options.release = 20
+    //options.release = 20
+    options.release = 17
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
+
