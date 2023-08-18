@@ -50,18 +50,22 @@ public class App implements Callable<Integer> {
     // this example implements Callable, so parsing, error handling and handling user
     // requests for usage help or version help can be done with one line of code.
     public static void main(String... args) {
-        System.out.println("----------------------");
+        //System.out.println("----------------------");
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
     }
 
 
-
-
     @Override
     public Integer call() throws Exception {
 
-        var rez = Differ.generate(filepath1.toString(), filepath2.toString());
+        System.out.println(filepath1.toString());
+        System.out.println(filepath2.toString());
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        String rezStr = Differ.generate(filepath1.toString(), filepath2.toString());
+
+        System.out.println("------ sorted rezult ------");
+        System.out.println(rezStr);
 
         //Map<String,String> jsonMap1 = readMapFromJsonFile(filepath1.toString());
         //Map<String,String> jsonMap2 = readMapFromJsonFile(filepath2.toString());
