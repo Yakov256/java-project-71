@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+//import static org.junit.jupiter.api.Assertions.*;
 //import static org.assertj.core.api.Assertions.assertThat;
 public class DifferTest {
 
@@ -34,8 +37,7 @@ public class DifferTest {
 
         String rezStr = Differ.getMapsDifferences(testMap1, testMap2);
         System.out.println(rezStr);
-
-        //assertThat(true, rezStr.equals(referenceStr));
+        assertEquals(rezStr, referenceStr);
     }
 
 }
