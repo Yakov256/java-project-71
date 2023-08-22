@@ -17,5 +17,12 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         with:
           gradle-version: 8.3
-      - run: ./gradlew checkstyleMain
-      - run: ./gradlew test
+      - name: Publish code coverage
+        uses: paambaati/codeclimate-action@v3.2.0
+        env:
+          CC_TEST_REPORTER_ID: ${{secret.CC_TEST_REPORTER_ID}}
+          JACOCO_SOURCE_PATH: "${{github.workspace}}/app/src/main/java"
+        with:
+          coverageCommand: make report
+          debug: true
+          coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
