@@ -20,6 +20,8 @@ jobs:
           gradle-version: 8.3
           arguments: build
           build-root-directory: app
+      - run: ./gradlew test
+      - run: ./gradlew report
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
         env:
