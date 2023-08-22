@@ -29,4 +29,3 @@ jobs:
           coverageCommand: make report
           debug: true
           #coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
-
