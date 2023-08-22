@@ -55,7 +55,7 @@ public class Differ {
                 }
             } else {
                 if (map2Value != null) {
-                    rezStr.append("+ " + entry.getKey() + ": " + map2Value + "\n");
+                    rezStr.append("+ "+entry.getKey() + ": " + map2Value + "\n");
                 }
             }
         }
