@@ -1,6 +1,6 @@
 package hexlet.code;
 
-/**
+/*
  * Picocli: Checksum calculator
  * Specify another file name as command line parameter, e.g. '/usr/bin/java' or '/proc/cpuinfo'
  * Taken from: <a href="https://picocli.info/#_example_application">Picocli user manual</a>
@@ -38,10 +38,12 @@ import org.json.simple.parser.ParseException;
 public class App implements Callable<Integer> {
 //public class App {
 
-    @Parameters(index = "0", description = "path to first file", defaultValue = "/home/yakov/IdeaProjects/java-project-71/app/src/main/resources/file1.json")
+    @Parameters(index = "0", description = "path to first file",
+            defaultValue = "/home/yakov/IdeaProjects/java-project-71/app/src/main/resources/file1.json")
     private File filepath1 = new File("/resources/file1.json");
 
-    @Parameters(index = "1", description = "path to second file", defaultValue = "/home/yakov/IdeaProjects/java-project-71/app/src/main/resources/file2.json")
+    @Parameters(index = "1", description = "path to second file",
+            defaultValue = "/home/yakov/IdeaProjects/java-project-71/app/src/main/resources/file2.json")
     private File filepath2 = new File("/resources/file2.json");
 
     @Option(names = {"-f", "--format"}, description = "[default: stylish]")
@@ -77,7 +79,8 @@ public class App implements Callable<Integer> {
 
         //byte[] fileContents = Files.readAllBytes(file.toPath());
         //byte[] digest = MessageDigest.getInstance(algorithm).digest(fileContents);
-        //System.out.printf(algorithm + " hash of " + file.getPath() + ": %0" + (digest.length*2) + "x%n", new BigInteger(1, digest));
+        //System.out.printf(algorithm + " hash of " + file.getPath() + ": %0" + (digest.length*2)
+        // + "x%n", new BigInteger(1, digest));
         return 0;
     }
 }

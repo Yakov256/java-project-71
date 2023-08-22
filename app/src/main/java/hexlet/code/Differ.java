@@ -12,16 +12,16 @@ import java.util.TreeMap;
 
 public class Differ {
 
-    private static Map<String,String> readMapFromJsonFile (String filePath) throws IOException, ParseException {
+    private static Map<String, String> readMapFromJsonFile(String filePath) throws IOException, ParseException {
         System.out.println("Reading JSON from file: " + filePath);
 
         Object jObj = new JSONParser().parse(new FileReader(filePath));
         JSONObject jsonObject = (JSONObject) jObj;
 
-        Map<String,String> jsonMap = new HashMap<>();
+        Map<String, String> jsonMap = new HashMap<>();
 
         for (Object key : jsonObject.keySet()) {
-            String keyStr = (String)key;
+            String keyStr = (String) key;
             Object keyValue = jsonObject.get(keyStr);
 
             jsonMap.put(keyStr, keyValue.toString());
