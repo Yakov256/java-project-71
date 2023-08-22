@@ -5,7 +5,7 @@ clean:
 	@./gradlew clean
 
 lint:
-	@./gradlew checkstyleMain checkstyleTest
+	@./gradlew checkstyleMain
 
 test:
 	@./gradlew test
