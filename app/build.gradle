@@ -33,6 +33,12 @@ test {
     useJUnitPlatform()
 }
 
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
 application {
     mainClass = 'hexlet.code.App'
 }
