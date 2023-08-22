@@ -17,6 +17,6 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         with:
           gradle-version: 8.3
-      - run: ./gradlew lint
-      - run: ./gradlew test
-      - run: ./gradlew report
+      - run: .app/gradlew lint
+      - run: .app/gradlew test
+      - run: .app/gradlew report
