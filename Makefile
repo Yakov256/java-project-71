@@ -4,6 +4,9 @@ run-dist:
 clean:
 	make -C app clean
 
+install:
+	make -C app install
+
 lint:
 	make -C app lint
 
