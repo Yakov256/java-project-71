@@ -11,16 +11,8 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-//import java.io.*;
 import java.io.File;
-//import java.nio.file.Files;
-//import java.util.HashMap;
 import java.util.concurrent.Callable;
-
-//import org.json.simple.JSONArray;
-//import org.json.simple.JSONObject;
-//import org.json.simple.parser.JSONParser;
-//import org.json.simple.parser.ParseException;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "checksum 4.0",
         description = "Compares two configuration files and shows a difference.")
@@ -41,7 +33,6 @@ public class App implements Callable<Integer> {
     // this example implements Callable, so parsing, error handling and handling user
     // requests for usage help or version help can be done with one line of code.
     public static void main(String... args) {
-        //System.out.println("----------------------");
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
     }

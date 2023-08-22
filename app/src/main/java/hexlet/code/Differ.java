@@ -27,7 +27,6 @@ public class Differ {
             jsonMap.put(keyStr, keyValue.toString());
             //System.out.println("key: "+ keyStr + " value: " + keyValue);
         }
-
         //System.out.println("Map has been read: " + jsonMap);
         return jsonMap;
     }
@@ -39,7 +38,6 @@ public class Differ {
         keysFromBothJson.putAll(map1);
         keysFromBothJson.putAll(map2);
 
-        //------------------------------------------------
         StringBuilder rezStr = new StringBuilder("{\n");
 
         for (Map.Entry<String, String> entry : keysFromBothJson.entrySet()) {
@@ -61,49 +59,14 @@ public class Differ {
                 }
             }
         }
-
         rezStr.append("}\n");
 
         return rezStr.toString();
     }
 
     public static String generate(String filePath1, String filePath2) throws IOException, ParseException {
-
         Map<String, String> jsonMap1 = readMapFromJsonFile(filePath1);
         Map<String, String> jsonMap2 = readMapFromJsonFile(filePath2);
         return getMapsDifferences(jsonMap1, jsonMap2);
-/*
-        // Получаем отсортированный Map с ключами из двух json файлов
-        Map<String, String> keysFromBothJson = new TreeMap<>();
-        keysFromBothJson.putAll(jsonMap1);
-        keysFromBothJson.putAll(jsonMap2);
-
-        //------------------------------------------------
-        StringBuilder rezStr = new StringBuilder("{\n");
-
-        for (Map.Entry<String, String> entry : keysFromBothJson.entrySet()) {
-            String map1Value = jsonMap1.get(entry.getKey());
-            String map2Value = jsonMap2.get(entry.getKey());
-
-            if (map1Value != null) {
-                if (map2Value == null) {
-                    rezStr.append("- " + entry.getKey() + ": " + map1Value + "\n");
-                } else if (map1Value.equals(map2Value)) {
-                    rezStr.append("  " + entry.getKey() + ": " + map1Value + "\n");
-                } else if (!map1Value.equals(map2Value)) {
-                    rezStr.append("- " + entry.getKey() + ": " + map1Value + "\n");
-                    rezStr.append("+ " + entry.getKey() + ": " + map2Value + "\n");
-                }
-            } else {
-                if (map2Value != null) {
-                    rezStr.append("+ " + entry.getKey() + ": " + map2Value + "\n");
-                }
-            }
-        }
-
-        rezStr.append("}\n");
-
-        return rezStr.toString();
-         */
     }
 }
