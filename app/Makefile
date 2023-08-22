@@ -2,10 +2,10 @@ run-dist:
 	@./build/install/app/bin/app testFile1.json testFile2.json
 
 clean:
-	@./gradlew clean
+	./gradlew clean
 
 lint:
-	@./gradlew checkstyleMain
+	./gradlew checkstyleMain
 
 test:
 	@./gradlew test
