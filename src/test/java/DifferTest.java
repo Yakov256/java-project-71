@@ -1,8 +1,13 @@
 import hexlet.code.Differ;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static hexlet.code.Differ.readMapFromJsonFile;
+import static hexlet.code.Differ.readMapFromYmlFile;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
@@ -31,6 +36,34 @@ public class DifferTest {
 
         String rezStr = Differ.getMapsDifferences(testMap1, testMap2);
         assertEquals(rezStr, referenceStr);
+    }
+
+    @Test
+    void readMapFromJsonFileTest() throws IOException, ParseException {
+        Map<String, String> testMap1 = new HashMap<>();
+        testMap1.put("host", "hexlet.io");
+        testMap1.put("timeout", "50");
+        testMap1.put("proxy", "123.234.53.22");
+        testMap1.put("follow", "false");
+
+        Map<String, String> readedMap = readMapFromJsonFile(System.getProperty("user.dir")
+                + "/src/test/resources/file1.json");
+
+        assertEquals(testMap1, readedMap);
+    }
+
+    @Test
+    void readMapFromYmlFileTest() throws IOException, ParseException {
+        Map<String, String> testMap1 = new HashMap<>();
+        testMap1.put("host", "hexlet.io");
+        testMap1.put("timeout", "50");
+        testMap1.put("proxy", "123.234.53.22");
+        testMap1.put("follow", "false");
+
+        Map<String, String> readedMap = readMapFromYmlFile(System.getProperty("user.dir")
+                + "/src/test/resources/file1.yml");
+
+        assertEquals(testMap1, readedMap);
     }
 
 }

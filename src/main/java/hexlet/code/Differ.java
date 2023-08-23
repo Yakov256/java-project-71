@@ -1,12 +1,12 @@
 package hexlet.code;
 
 import com.fasterxml.jackson.core.JsonToken;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.yaml.snakeyaml.Yaml;
+//import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,12 +15,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import java.io.File;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 public class Differ {
 
-    private static Map<String, String> readMapFromJsonFile(String filePath) throws IOException, ParseException {
+    public static Map<String, String> readMapFromJsonFile(String filePath) throws IOException, ParseException {
         System.out.println("Reading JSON from file: " + filePath);
 
         Object jObj = new JSONParser().parse(new FileReader(filePath));
@@ -31,15 +31,13 @@ public class Differ {
         for (Object key : jsonObject.keySet()) {
             String keyStr = (String) key;
             Object keyValue = jsonObject.get(keyStr);
-
             jsonMap.put(keyStr, keyValue.toString());
-            //System.out.println("key: "+ keyStr + " value: " + keyValue);
         }
-        //System.out.println("Map has been read: " + jsonMap);
+
         return jsonMap;
     }
 
-    private static Map<String, String> readMapFromYmlFile(String filePath) throws IOException, ParseException {
+    public static Map<String, String> readMapFromYmlFile(String filePath) throws IOException, ParseException {
         System.out.println("Reading JSON from file: " + filePath);
 
         File file = new File(filePath);
@@ -49,19 +47,19 @@ public class Differ {
         Map<String, String> yamlMap = new HashMap<>();
         String fieldName = "";
         String fieldValue = "";
-        while(jsonToken != null) {
-            switch(jsonToken) {
+        while (jsonToken != null) {
+            switch (jsonToken) {
                 //System.out.println("--- " + jsonToken.toString());
                 case FIELD_NAME:fieldName = yamlParser.getText();
-                    System.out.println("Key field: " + yamlParser.getText());
+                    //System.out.println("Key field: " + yamlParser.getText());
                     break;
-                case START_OBJECT: System.out.println("Object Started");
+                case START_OBJECT: //System.out.println("Object Started");
                     break;
-                case END_OBJECT: System.out.println("Object Ended");
+                case END_OBJECT: //System.out.println("Object Ended");
                     break;
-                case START_ARRAY: System.out.println("Array Started");
+                case START_ARRAY: //System.out.println("Array Started");
                     break;
-                case END_ARRAY: System.out.println("Array Ended");
+                case END_ARRAY: //System.out.println("Array Ended");
                     break;
                 //case VALUE_FALSE:
                 //case VALUE_NULL:
@@ -90,12 +88,12 @@ public class Differ {
 
         System.out.println(filePath);
         if (filePath.endsWith("json")) {
-            System.out.println("Обрабатываем json");
+            //System.out.println("Обрабатываем json");
             jsonMap = readMapFromJsonFile(filePath);
         } else if (filePath.endsWith("yml")) {
-            System.out.println("Обрабатываем yml");
+            //System.out.println("Обрабатываем yml");
             jsonMap = readMapFromYmlFile(filePath);
-        };
+        }
 
         return jsonMap;
     }
