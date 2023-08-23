@@ -20,12 +20,14 @@ public class App implements Callable<Integer> {
 //public class App {
 
     @Parameters(index = "0", description = "path to first file",
-            defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file1.json")
-    private File filepath1 = new File("/resources/file1.json");
+            defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file1.yml")
+    //private File filepath1 = new File("/resources/file1.json");
+    private File filepath1 = new File("/resources/file1.yml");
 
     @Parameters(index = "1", description = "path to second file",
-            defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file2.json")
-    private File filepath2 = new File("/resources/file2.json");
+            defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file2.yml")
+    //private File filepath2 = new File("/resources/file2.json");
+    private File filepath2 = new File("/resources/file2.yml");
 
     @Option(names = {"-f", "--format"}, description = "[default: stylish]")
     private String format = "stylish";

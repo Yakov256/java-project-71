@@ -31,6 +31,16 @@ public class Differ {
         return jsonMap;
     }
 
+    private static Map<String, String> readMapFromFile(String filePath) throws IOException, ParseException {
+
+        System.out.println(filePath);
+        String[] strFileNameAray = filePath.split(".");
+        System.out.println(strFileNameAray.length);
+        //System.out.println(strFileNameAray[strFileNameAray.length - 1]);
+
+        return null;
+    }
+
     public static String getLineDifferences(String key, String map1Value, String map2Value) {
         StringBuilder rezStr = new StringBuilder();
         if (map1Value != null) {
@@ -62,32 +72,18 @@ public class Differ {
         for (Map.Entry<String, String> entry : keysFromBothJson.entrySet()) {
             String map1Value = map1.get(entry.getKey());
             String map2Value = map2.get(entry.getKey());
-
             rezStr.append(getLineDifferences(entry.getKey(), map1Value, map2Value));
-            /*
-            if (map1Value != null) {
-                if (map2Value == null) {
-                    rezStr.append("- " + entry.getKey() + ": " + map1Value + "\n");
-                } else if (map1Value.equals(map2Value)) {
-                    rezStr.append("  " + entry.getKey() + ": " + map1Value + "\n");
-                } else if (!map1Value.equals(map2Value)) {
-                    rezStr.append("- " + entry.getKey() + ": " + map1Value + "\n");
-                    rezStr.append("+ " + entry.getKey() + ": " + map2Value + "\n");
-                }
-            } else {
-                if (map2Value != null) {
-                    rezStr.append("+ " + entry.getKey() + ": " + map2Value + "\n");
-                }
-            }
-             */
         }
+
         rezStr.append("}\n");
         return rezStr.toString();
     }
 
     public static String generate(String filePath1, String filePath2) throws IOException, ParseException {
-        Map<String, String> jsonMap1 = readMapFromJsonFile(filePath1);
-        Map<String, String> jsonMap2 = readMapFromJsonFile(filePath2);
-        return getMapsDifferences(jsonMap1, jsonMap2);
+        readMapFromFile(filePath1);
+        //Map<String, String> jsonMap1 = readMapFromJsonFile(filePath1);
+        //Map<String, String> jsonMap2 = readMapFromJsonFile(filePath2);
+        //return getMapsDifferences(jsonMap1, jsonMap2);
+        return null;
     }
 }
