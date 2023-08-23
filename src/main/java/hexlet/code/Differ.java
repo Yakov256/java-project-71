@@ -47,9 +47,11 @@ public class Differ {
             if (map1Value != null) {
                 if (map2Value == null) {
                     rezStr.append("- " + entry.getKey() + ": " + map1Value + "\n");
-                } else if (map1Value.equals(map2Value)) {
+                };
+                if (map1Value.equals(map2Value)) {
                     rezStr.append("  " + entry.getKey() + ": " + map1Value + "\n");
-                } else if (!map1Value.equals(map2Value)) {
+                };
+                if (!map1Value.equals(map2Value)) {
                     rezStr.append("- " + entry.getKey() + ": " + map1Value + "\n");
                     rezStr.append("+ " + entry.getKey() + ": " + map2Value + "\n");
                 }
