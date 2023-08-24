@@ -1,11 +1,5 @@
 package hexlet.code;
 
-/*
- * Picocli: Checksum calculator
- * Specify another file name as command line parameter, e.g. '/usr/bin/java' or '/proc/cpuinfo'
- * Taken from: <a href="https://picocli.info/#_example_application">Picocli user manual</a>
- * @author Remko Popma
- */
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -14,10 +8,9 @@ import picocli.CommandLine.Parameters;
 import java.io.File;
 import java.util.concurrent.Callable;
 
-@Command(name = "gendiff", mixinStandardHelpOptions = true, version = "checksum 4.0",
+@Command(name = "gendiff", mixinStandardHelpOptions = true, version = "0.7",
         description = "Compares two configuration files and shows a difference.")
 public class App implements Callable<Integer> {
-//public class App {
 
     @Parameters(index = "0", description = "path to first file",
             defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file1.yml")
@@ -39,30 +32,14 @@ public class App implements Callable<Integer> {
         System.exit(exitCode);
     }
 
-
     @Override
     public Integer call() throws Exception {
-
-        System.out.println(filepath1.toString());
-        System.out.println(filepath2.toString());
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        System.out.println("Working Directory: " + System.getProperty("user.dir"));
         String rezStr = Differ.generate(filepath1.toString(), filepath2.toString());
 
-        System.out.println("------ sorted rezult ------");
+        System.out.println("Differences between files:");
         System.out.println(rezStr);
 
-        //Map<String,String> jsonMap1 = readMapFromJsonFile(filepath1.toString());
-        //Map<String,String> jsonMap2 = readMapFromJsonFile(filepath2.toString());
-
-        //System.out.println("---------- MAPs ----------");
-        //System.out.println(jsonMap1);
-        //System.out.println(jsonMap2);
-
-
-        //byte[] fileContents = Files.readAllBytes(file.toPath());
-        //byte[] digest = MessageDigest.getInstance(algorithm).digest(fileContents);
-        //System.out.printf(algorithm + " hash of " + file.getPath() + ": %0" + (digest.length*2)
-        // + "x%n", new BigInteger(1, digest));
         return 0;
     }
 }

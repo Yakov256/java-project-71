@@ -1,5 +1,5 @@
 run-dist:
-	@/build/install/app/bin/app
+	make -C app run-dist
 
 clean:
 	./gradlew clean
@@ -8,7 +8,7 @@ install:
 	./gradlew clean install
 
 lint:
-	./gradlew checkstyleMain
+	./gradlew checkstyleMain checkstyleTest
 
 test:
 	./gradlew test
