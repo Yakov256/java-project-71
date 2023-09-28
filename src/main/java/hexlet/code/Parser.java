@@ -4,23 +4,23 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
-import com.fasterxml.jackson.core.JsonToken;
+//import com.fasterxml.jackson.core.JsonToken;
 //import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLParser;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+//import com.fasterxml.jackson.dataformat.yaml.YAMLParser;
+//import org.json.simple.JSONObject;
+//import org.json.simple.parser.JSONParser;
+//import org.json.simple.parser.ParseException;
 //import com.fasterxml.jackson.dataformat.yaml.YAMLParser;
 //import org.yaml.snakeyaml.Yaml;
 //import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+//import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-import java.io.File;
-import java.io.FileReader;
+//import java.io.File;
+//import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -71,14 +71,11 @@ public class Parser {
                     }
                     break;
             }
-
             jsonToken = yamlParser.nextToken();
         }
-
         yamlParser.close();
         return yamlMap;
     }
-
  */
 
 
@@ -96,6 +93,17 @@ public class Parser {
 
         //rezTreeMap = mapper.readValue(filePath, new TypeReference<>() { });
         rezTreeMap = mapper.readValue(strFromFile, new TypeReference<>() { });
+
+        ///***
+        for (Map.Entry<String, Object> entry : rezTreeMap.entrySet()) {
+            //System.out.println("" + entry.getKey() + " - " + entry.getValue());
+            if (entry.getValue() == null) {
+                entry.setValue("null");
+            }
+            //System.out.println("" + entry.getKey() + " - " + entry.getValue());
+        }
+        ///***
+
         return rezTreeMap;
     }
 

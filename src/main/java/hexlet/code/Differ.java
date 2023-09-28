@@ -1,9 +1,6 @@
 package hexlet.code;
 
 import org.json.simple.parser.ParseException;
-//import java.io.IOException;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -14,17 +11,14 @@ public class Differ {
     /*private static Map<String, String> readMapFromFile(String filePath) throws Exception {
         //Map<String, String> mapFromFile = new HashMap<>();
         TreeMap<String, Object> treeMapFromFile = new TreeMap<>();
-
         if (filePath.endsWith("json")) {
             mapFromFile = Parser.readMapFromJsonFile(filePath);
         } else if (filePath.endsWith("yml")) {
             mapFromFile = Parser.readMapFromYmlFile(filePath);
         }
         treeMapFromFile = readTreeMapFromFile(filePath);
-
         return mapFromFile;
     }*/
-
     //private static TreeMap<String, Object> readMapFromFile(String filePath) throws Exception {
         //return readTreeMapFromFile(filePath);
     //}
@@ -43,20 +37,18 @@ public class Differ {
             }
         } else {
             if (map2Value != null) {
-                rezStr.append("- " + key + ": " + map1Value + "\n");
+                //rezStr.append("- " + key + ": " + map1Value + "\n");
                 rezStr.append("+ " + key + ": " + map2Value + "\n");
             }
         }
         return rezStr.toString();
     }
 
-    /*public static String getMapsDifferences(Map<String, String> map1, Map<String, String> map2) throws ParseException {
-
+/*public static String getMapsDifferences(Map<String, String> map1, Map<String, String> map2) throws ParseException {
         // Получаем отсортированный Map с ключами из двух json файлов
         Map<String, String> keysFromBothJson = new TreeMap<>();
         keysFromBothJson.putAll(map1);
         keysFromBothJson.putAll(map2);
-
         StringBuilder rezStr = new StringBuilder("{\n");
 
         for (Map.Entry<String, String> entry : keysFromBothJson.entrySet()) {
@@ -64,7 +56,6 @@ public class Differ {
             String map2Value = map2.get(entry.getKey());
             rezStr.append(getLineDifferences(entry.getKey(), map1Value, map2Value));
         }
-
         rezStr.append("}\n");
         return rezStr.toString();
     }*/
@@ -75,7 +66,8 @@ public class Differ {
         System.out.println("-------------------------------------------");
     }
 
-    public static String getMapsDifferences(TreeMap<String, Object> treeMap1, TreeMap<String, Object> treeMap2) throws ParseException {
+    public static String getMapsDifferences(TreeMap<String, Object> treeMap1,
+                                            TreeMap<String, Object> treeMap2) throws ParseException {
         String map1Value;
         String map2Value;
 
@@ -128,9 +120,9 @@ public class Differ {
     }
 
     public static String generate(String filePath1, String filePath2) throws Exception {
-        TreeMap<String, Object> TreeMap1 = readTreeMapFromFile(filePath1);
-        TreeMap<String, Object> TreeMap2 = readTreeMapFromFile(filePath2);
-        return getMapsDifferences(TreeMap1, TreeMap2);
+        TreeMap<String, Object> treeMap1 = readTreeMapFromFile(filePath1);
+        TreeMap<String, Object> treeMap2 = readTreeMapFromFile(filePath2);
+        return getMapsDifferences(treeMap1, treeMap2);
 
         /*
         Map<String, String> jsonMap1 = readMapFromFile(filePath1);
