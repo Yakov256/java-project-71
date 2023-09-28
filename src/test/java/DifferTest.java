@@ -59,7 +59,7 @@ public class DifferTest {
         testMap1.put("proxy", "123.234.53.22");
         testMap1.put("follow", "false");
 
-        Map<String, Object> readedMap = Parser.readMapFromYmlFile(System.getProperty("user.dir")
+        Map<String, String> readedMap = Parser.readMapFromYmlFile(System.getProperty("user.dir")
                 + "/src/test/resources/file1.yml");
 
         assertEquals(testMap1, readedMap);

@@ -1,5 +1,9 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+
 import com.fasterxml.jackson.core.JsonToken;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLParser;
@@ -14,36 +18,17 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 //import com.fasterxml.jackson.core.type.TypeReference;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 public class Parser {
-
-    public static Map<String, String> readMapFromJsonFile(String filePath) throws IOException, ParseException {
-        //System.out.println("Reading JSON file: " + filePath);
-
-        Object jObj = new JSONParser().parse(new FileReader(filePath));
-        JSONObject jsonObject = (JSONObject) jObj;
-        Map<String, String> jsonMap = new HashMap<>();
-
-        for (Object key : jsonObject.keySet()) {
-            String keyStr = (String) key;
-            if (jsonObject.get(keyStr) != null) {
-            Object keyValue = jsonObject.get(keyStr);
-                //System.out.println("" + keyStr + " - " + keyValue.toString()); ///***
-                //jsonMap.put(keyStr, keyValue.toString());
-                jsonMap.put(keyStr, keyValue.toString());
-            } else {
-                jsonMap.put(keyStr, "null");
-            }
-        }
-
-        return jsonMap;
-    }
 
 /*
     public static Map<String, String> readMapFromYmlFile(String filePath) throws Exception {
@@ -55,7 +40,7 @@ public class Parser {
         return null;
     }
  */
-
+/*
     public static Map<String, String> readMapFromYmlFile(String filePath) throws IOException, ParseException {
         //System.out.println("Reading YAML file: " + filePath);
         File file = new File(filePath);
@@ -93,5 +78,70 @@ public class Parser {
         yamlParser.close();
         return yamlMap;
     }
+
+ */
+
+
+    public static TreeMap<String, Object> readTreeMapFromFile(String filePath) throws IOException {
+        TreeMap<String, Object> rezTreeMap;
+        ObjectMapper mapper = null;
+        if (filePath.endsWith("json")) {
+            mapper = new ObjectMapper();
+        } else if (filePath.endsWith("yml") || filePath.endsWith("yaml")) {
+            mapper = new YAMLMapper();
+        }
+
+        String strFromFile = new String(Files.readAllBytes(Paths.get(filePath)));
+        System.out.println(strFromFile);
+
+        //rezTreeMap = mapper.readValue(filePath, new TypeReference<>() { });
+        rezTreeMap = mapper.readValue(strFromFile, new TypeReference<>() { });
+        return rezTreeMap;
+    }
+
+/*
+    public static TreeMap<String, Object> readTreeMapFromYmlFile(String filePath) throws IOException, ParseException {
+
+        final ObjectMapper yamlMapper = new YAMLMapper();
+        final TreeMap<String, Object> yamlTreeMap;
+        yamlTreeMap = yamlMapper.readValue(filePath, new TypeReference<>() { });
+        return yamlTreeMap;
+
+    }
+
+    public static TreeMap<String, Object> readTreeMapFromJsonFile(String filePath) throws IOException, ParseException {
+
+        final ObjectMapper jsonMapper = new ObjectMapper();
+        final TreeMap<String, Object> jsonTreeMap;
+        jsonTreeMap = jsonMapper.readValue(filePath, new TypeReference<>() { });
+        return jsonTreeMap;
+
+    }
+*/
+
+    /*
+
+    public static Map<String, String> readMapFromJsonFile(String filePath) throws IOException, ParseException {
+        //System.out.println("Reading JSON file: " + filePath);
+
+        Object jObj = new JSONParser().parse(new FileReader(filePath));
+        JSONObject jsonObject = (JSONObject) jObj;
+        Map<String, String> jsonMap = new HashMap<>();
+
+        for (Object key : jsonObject.keySet()) {
+            String keyStr = (String) key;
+            if (jsonObject.get(keyStr) != null) {
+                Object keyValue = jsonObject.get(keyStr);
+                //System.out.println("" + keyStr + " - " + keyValue.toString()); ///***
+                //jsonMap.put(keyStr, keyValue.toString());
+                jsonMap.put(keyStr, keyValue.toString());
+            } else {
+                jsonMap.put(keyStr, "null");
+            }
+        }
+
+        return jsonMap;
+    }
+    */
 
 }
