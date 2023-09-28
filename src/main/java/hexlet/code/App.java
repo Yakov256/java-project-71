@@ -13,14 +13,16 @@ import java.util.concurrent.Callable;
 public class App implements Callable<Integer> {
 
     @Parameters(index = "0", description = "path to first file",
-            defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file1.yml")
-    //private File filepath1 = new File("/resources/file1.json");
-    private File filepath1 = new File("/resources/file1.yml");
+            defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file111.json")
+            //defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file1.yml")
+    private File filepath1 = new File("/resources/file1.json");
+//    private File filepath1 = new File("/resources/file1.yml");
 
     @Parameters(index = "1", description = "path to second file",
-            defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file2.yml")
-    //private File filepath2 = new File("/resources/file2.json");
-    private File filepath2 = new File("/resources/file2.yml");
+            defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file211.json")
+            //defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file2.yml")
+    private File filepath2 = new File("/resources/file2.json");
+//    private File filepath2 = new File("/resources/file2.yml");
 
     @Option(names = {"-f", "--format"}, description = "[default: stylish]")
     private String format = "stylish";
@@ -34,8 +36,15 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        System.out.println("Working Directory: " + System.getProperty("user.dir"));
+        //System.out.println("Working Directory: " + System.getProperty("user.dir"));
+        filepath1 = new File (System.getProperty("user.dir") + "//" + filepath1.getPath());
+        filepath2 = new File (System.getProperty("user.dir") + "//" + filepath2.getPath());
+        System.out.println("File 1: " + filepath1);
+        System.out.println("File 2: " + filepath2);
+        //filepath1 = System.getProperty("user.dir") + filepath1;
         String rezStr = Differ.generate(filepath1.toString(), filepath2.toString());
+
+
 
         System.out.println("Differences between files:");
         System.out.println(rezStr);

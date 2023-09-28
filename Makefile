@@ -1,5 +1,8 @@
 run-dist:
-	make -C app run-dist
+	@./build/install/app/bin/app
+
+help:
+	@./build/install/app/bin/app -h
 
 clean:
 	./gradlew clean

@@ -17,10 +17,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+//import com.fasterxml.jackson.core.type.TypeReference;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+
 public class Parser {
 
     public static Map<String, String> readMapFromJsonFile(String filePath) throws IOException, ParseException {
-        System.out.println("Reading JSON file: " + filePath);
+        //System.out.println("Reading JSON file: " + filePath);
 
         Object jObj = new JSONParser().parse(new FileReader(filePath));
         JSONObject jsonObject = (JSONObject) jObj;
@@ -36,9 +40,19 @@ public class Parser {
         return jsonMap;
     }
 
-    public static Map<String, String> readMapFromYmlFile(String filePath) throws IOException, ParseException {
-        System.out.println("Reading YAML file: " + filePath);
+/*
+    public static Map<String, String> readMapFromYmlFile(String filePath) throws Exception {
+        ObjectMapper mapper = new YAMLMapper();
+        Map<String, Object> value;
+        value = mapper.readValue(filePath, new TypeReference<>() { });
+        //Map<String, String> map2 = new HashMap<>(value);
+        System.out.println(value);
+        return null;
+    }
+ */
 
+    public static Map<String, String> readMapFromYmlFile(String filePath) throws IOException, ParseException {
+        //System.out.println("Reading YAML file: " + filePath);
         File file = new File(filePath);
         YAMLFactory yamlFactory = new YAMLFactory();
         YAMLParser yamlParser = yamlFactory.createParser(file);

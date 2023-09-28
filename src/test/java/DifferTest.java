@@ -52,7 +52,7 @@ public class DifferTest {
     }
 
     @Test
-    void readMapFromYmlFileTest() throws IOException, ParseException {
+    void readMapFromYmlFileTest() throws Exception {
         Map<String, String> testMap1 = new HashMap<>();
         testMap1.put("host", "hexlet.io");
         testMap1.put("timeout", "50");

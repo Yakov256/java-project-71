@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 public class Differ {
 
-    private static Map<String, String> readMapFromFile(String filePath) throws IOException, ParseException {
+    private static Map<String, String> readMapFromFile(String filePath) throws Exception {
         Map<String, String> mapFromFile = new HashMap<>();
 
         if (filePath.endsWith("json")) {
@@ -58,7 +58,7 @@ public class Differ {
         return rezStr.toString();
     }
 
-    public static String generate(String filePath1, String filePath2) throws IOException, ParseException {
+    public static String generate(String filePath1, String filePath2) throws Exception {
         //readMapFromFile(filePath1);
         Map<String, String> jsonMap1 = readMapFromFile(filePath1);
         Map<String, String> jsonMap2 = readMapFromFile(filePath2);
