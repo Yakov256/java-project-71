@@ -37,8 +37,8 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         //System.out.println("Working Directory: " + System.getProperty("user.dir"));
-        filepath1 = new File (System.getProperty("user.dir") + "//" + filepath1.getPath());
-        filepath2 = new File (System.getProperty("user.dir") + "//" + filepath2.getPath());
+        filepath1 = new File(System.getProperty("user.dir") + "//" + filepath1.getPath());
+        filepath2 = new File(System.getProperty("user.dir") + "//" + filepath2.getPath());
         System.out.println("File 1: " + filepath1);
         System.out.println("File 2: " + filepath2);
         //filepath1 = System.getProperty("user.dir") + filepath1;
