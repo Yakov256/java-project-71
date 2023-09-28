@@ -10,16 +10,16 @@
     Поддержка разных входных форматов: yaml и json
     Генерация отчета в виде plain text, stylish и json
 
-## Пример использования:
+Пример использования:
 
-# формат plain
+формат plain
 ./app --format plain path/to/file.yml another/path/file.json
 
 Property 'follow' was added with value: false
 Property 'baz' was updated. From 'bas' to 'bars'
 Property 'group2' was removed
 
-# формат stylish
+формат stylish
 ./app filepath1.json filepath2.json
 
 {
