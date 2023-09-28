@@ -28,13 +28,18 @@ public class Parser {
 
         Object jObj = new JSONParser().parse(new FileReader(filePath));
         JSONObject jsonObject = (JSONObject) jObj;
-
         Map<String, String> jsonMap = new HashMap<>();
 
         for (Object key : jsonObject.keySet()) {
             String keyStr = (String) key;
+            if (jsonObject.get(keyStr) != null) {
             Object keyValue = jsonObject.get(keyStr);
-            jsonMap.put(keyStr, keyValue.toString());
+                //System.out.println("" + keyStr + " - " + keyValue.toString()); ///***
+                //jsonMap.put(keyStr, keyValue.toString());
+                jsonMap.put(keyStr, keyValue.toString());
+            } else {
+                jsonMap.put(keyStr, "null");
+            }
         }
 
         return jsonMap;
