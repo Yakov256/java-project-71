@@ -29,13 +29,21 @@ public class Differ {
         return rezStr.toString();
     }
 
-    /*
+
     public static void soutTreeMap(TreeMap<String, Object> treeMap) {
         System.out.println("-------------------------------------------");
         System.out.println(treeMap);
         System.out.println("-------------------------------------------");
     }
-     */
+
+
+    private static String toStringExceptNull(Object obj) {
+        if (obj == null) {
+            return null;
+        } else {
+            return obj.toString();
+        }
+    }
 
     public static String getTreeMapsDifferences(TreeMap<String, Object> treeMap1,
                                                 TreeMap<String, Object> treeMap2) throws ParseException {
@@ -53,6 +61,10 @@ public class Differ {
         StringBuilder rezStr = new StringBuilder("{\n");
 
         for (Map.Entry<String, Object> entry : keysFromBothFile.entrySet()) {
+
+            map1Value = toStringExceptNull(treeMap1.get(entry.getKey()));
+            map2Value = toStringExceptNull(treeMap2.get(entry.getKey()));
+            /*
             if (treeMap1.get(entry.getKey()) == null) {
                 map1Value = null;
             } else {
@@ -64,6 +76,7 @@ public class Differ {
             } else {
                 map2Value = treeMap2.get(entry.getKey()).toString();
             }
+             */
 
             rezStr.append(getLineDifferences(entry.getKey(), map1Value, map2Value));
         }

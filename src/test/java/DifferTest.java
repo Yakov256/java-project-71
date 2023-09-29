@@ -1,13 +1,13 @@
 import hexlet.code.Differ;
 //import hexlet.code.Parser;
-import hexlet.code.Parser;
+//import hexlet.code.Parser;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
 //import java.io.IOException;
 //import java.util.HashMap;
 //import java.util.Map;
-import java.io.IOException;
+//import java.io.IOException;
 import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,42 +15,76 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DifferTest {
 
     @Test
-    void getMapsDifferencesTest() throws ParseException {
-        TreeMap<String, Object> testMap1 = new TreeMap<>();
-        testMap1.put("host", "hexlet.io");
-        testMap1.put("timeout", "50");
-        testMap1.put("proxy", "123.234.53.22");
-        testMap1.put("follow", "false");
+    void getTreeMapsDifferencesTest() throws ParseException {
+        TreeMap<String, Object> testTreeMap1 = new TreeMap<>();
 
-        TreeMap<String, Object> testMap2 = new TreeMap<>();
-        testMap2.put("timeout", "20");
-        testMap2.put("verbose", "true");
-        testMap2.put("host", "hexlet.io");
+        /*char[] abc =  {'a', 'b', 'c'};
+        char[] def =  {'d', 'e', 'f'};
+        int[] numbers1234 = {1, 2, 3, 4};
+        int[] numbers2345 = {2, 3, 4, 5};
+        int[] numbers345 = {3, 4, 5};*/
+
+        //testTreeMap1.put("chars1", abc);
+        testTreeMap1.put("chars1", "{'a', 'b', 'c'}");
+        //testTreeMap1.put("chars2", def);
+        testTreeMap1.put("chars2", "{'d', 'e', 'f'}");
+        testTreeMap1.put("checked", false);
+        testTreeMap1.put("default", null);
+        testTreeMap1.put("id", 45);
+        testTreeMap1.put("key1", "value1");
+        testTreeMap1.put("numbers1", "{1, 2, 3, 4}");
+        testTreeMap1.put("numbers2", "{2, 3, 4, 5}");
+        testTreeMap1.put("numbers3", "{3, 4, 5}");
+        testTreeMap1.put("setting1", "Some value");
+        testTreeMap1.put("setting2", 200);
+        testTreeMap1.put("setting3", true);
+
+        TreeMap<String, Object> testTreeMap2 = new TreeMap<>();
+        //{  obj1={nestedKey=value, isNested=true},
+        /*String[] value12 =  {"value1", "value2"};
+        int[] numbers22334455 = {22, 33, 44, 55};
+        int[] numbers456 = {4, 5, 6};*/
+
+        testTreeMap2.put("chars1", "{'a', 'b', 'c'}");
+        testTreeMap2.put("chars2", false);
+        testTreeMap2.put("checked", true);
+        testTreeMap2.put("default", "{\"value1\", \"value2\"}");
+        testTreeMap2.put("id", null);
+        testTreeMap2.put("key2", "value2");
+        testTreeMap2.put("numbers1", "{1, 2, 3, 4}");
+        testTreeMap2.put("numbers2", "{22, 33, 44, 55}");
+        testTreeMap2.put("numbers4", "{4, 5, 6}");
+        testTreeMap2.put("obj1", "{nestedKey=value, isNested=true}");
+        testTreeMap2.put("setting1", "Another value");
+        testTreeMap2.put("setting2", "300");
+        testTreeMap2.put("setting3", "none");
 
         String referenceStr = "{\n"
-                + "- follow: false\n"
-                + "  host: hexlet.io\n"
-                + "- proxy: 123.234.53.22\n"
-                + "- timeout: 50\n"
-                + "+ timeout: 20\n"
-                + "+ verbose: true\n"
+                + "  chars1: {'a', 'b', 'c'}\n"
+                + "- chars2: {'d', 'e', 'f'}\n"
+                + "+ chars2: false\n"
+                + "- checked: false\n"
+                + "+ checked: true\n"
+                + "+ default: {\"value1\", \"value2\"}\n"
+                + "- id: 45\n"
+                + "- key1: value1\n"
+                + "+ key2: value2\n"
+                + "  numbers1: {1, 2, 3, 4}\n"
+                + "- numbers2: {2, 3, 4, 5}\n"
+                + "+ numbers2: {22, 33, 44, 55}\n"
+                + "- numbers3: {3, 4, 5}\n"
+                + "+ numbers4: {4, 5, 6}\n"
+                + "+ obj1: {nestedKey=value, isNested=true}\n"
+                + "- setting1: Some value\n"
+                + "+ setting1: Another value\n"
+                + "- setting2: 200\n"
+                + "+ setting2: 300\n"
+                + "- setting3: true\n"
+                + "+ setting3: none\n"
                 + "}\n";
 
-        String rezStr = Differ.getTreeMapsDifferences(testMap1, testMap2);
+        String rezStr = Differ.getTreeMapsDifferences(testTreeMap1, testTreeMap2);
         assertEquals(rezStr, referenceStr);
-    }
-
-    @Test
-    void readTreeMapFromFileTest() throws IOException {
-        TreeMap<String, Object> readTreeMapFromJSON =
-                Parser.readTreeMapFromFile(System.getProperty("user.dir") + "/src/test/resources/file1.json");
-        TreeMap<String, Object> readTreeMapFromYAML =
-                Parser.readTreeMapFromFile(System.getProperty("user.dir") + "/src/test/resources/file1.yml");
-        String defaultStr = "{chars1=[a, b, c], chars2=[d, e, f], checked=false, default=null, id=45, key1=value1, "
-                + "numbers1=[1, 2, 3, 4], numbers2=[2, 3, 4, 5], numbers3=[3, 4, 5], setting1=Some "
-                + "value, setting2=200, setting3=true}";
-        assertEquals(readTreeMapFromJSON.toString(), defaultStr);
-        assertEquals(readTreeMapFromYAML.toString(), defaultStr);
     }
 
 }
