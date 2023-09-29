@@ -1,9 +1,8 @@
 package hexlet.code;
 
-import org.json.simple.parser.ParseException;
+//import org.json.simple.parser.ParseException;
 import java.util.Map;
 import java.util.TreeMap;
-
 import static hexlet.code.Parser.readTreeMapFromFile;
 
 public class Differ {
@@ -21,7 +20,7 @@ public class Differ {
                 rezStr.append("+ " + key + ": " + map2Value + "\n");
             }
         } else {
-            if (map2Value != null) {
+            if (map2Value != null) { //Есть только в первом
                 //rezStr.append("- " + key + ": " + map1Value + "\n");
                 rezStr.append("+ " + key + ": " + map2Value + "\n");
             }
@@ -29,13 +28,11 @@ public class Differ {
         return rezStr.toString();
     }
 
-
     public static void soutTreeMap(TreeMap<String, Object> treeMap) {
         System.out.println("-------------------------------------------");
         System.out.println(treeMap);
         System.out.println("-------------------------------------------");
     }
-
 
     private static String toStringExceptNull(Object obj) {
         if (obj == null) {
@@ -45,15 +42,13 @@ public class Differ {
         }
     }
 
-    public static String getTreeMapsDifferences(TreeMap<String, Object> treeMap1,
-                                                TreeMap<String, Object> treeMap2) throws ParseException {
+    public static String getTreeMapsDifferences(TreeMap<String, Object> treeMap1, TreeMap<String, Object> treeMap2) {
         String map1Value;
         String map2Value;
 
         //soutTreeMap(treeMap1);
         //soutTreeMap(treeMap2);
 
-        // Получаем отсортированный Map с ключами из двух json файлов
         TreeMap<String, Object> keysFromBothFile = new TreeMap<>();
         keysFromBothFile.putAll(treeMap1);
         keysFromBothFile.putAll(treeMap2);
@@ -84,34 +79,11 @@ public class Differ {
         rezStr.append("}\n");
         return rezStr.toString();
 
-        /*
-        // Получаем отсортированный Map с ключами из двух json файлов
-        Map<String, String> keysFromBothJson = new TreeMap<>();
-        keysFromBothJson.putAll(map1);
-        keysFromBothJson.putAll(map2);
-
-        StringBuilder rezStr = new StringBuilder("{\n");
-
-        for (Map.Entry<String, String> entry : keysFromBothJson.entrySet()) {
-            String map1Value = map1.get(entry.getKey());
-            String map2Value = map2.get(entry.getKey());
-            rezStr.append(getLineDifferences(entry.getKey(), map1Value, map2Value));
-        }
-
-        rezStr.append("}\n");
-        return rezStr.toString();
-        */
     }
 
     public static String generate(String filePath1, String filePath2) throws Exception {
         TreeMap<String, Object> treeMap1 = readTreeMapFromFile(filePath1);
         TreeMap<String, Object> treeMap2 = readTreeMapFromFile(filePath2);
         return getTreeMapsDifferences(treeMap1, treeMap2);
-
-        /*
-        Map<String, String> jsonMap1 = readMapFromFile(filePath1);
-        Map<String, String> jsonMap2 = readMapFromFile(filePath2);
-        return getMapsDifferences(jsonMap1, jsonMap2);
-         */
     }
 }
