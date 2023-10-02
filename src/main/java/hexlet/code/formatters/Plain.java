@@ -7,8 +7,12 @@ import java.util.List;
 
 public class Plain {
 
-    private static String getStringOrComplexValue(Object value){
+    private static String getStringOrComplexValue(Object value) {
         //System.out.println(value.getClass().getSimpleName());
+        if (value == null) {
+            return null;
+        }
+
         if (value.toString().contains("[") || value.toString().contains("{")) {
             return "[complex value]";
         } else if (value instanceof String) {
@@ -25,6 +29,7 @@ public class Plain {
         StringBuilder rezStr = new StringBuilder();
 
         for (Differs diff: diffs) {
+            System.out.println(diff);
             /*switch (diff.getStatus()) {
                 case DiffersStates.removed -> rezStr.append("- " + ": " + diff.getOldValue() + "\n");
                 case DiffersStates.notChanged -> rezStr.append("  " + ": " + diff.getOldValue() + "\n");
