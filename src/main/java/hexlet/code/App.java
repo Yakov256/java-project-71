@@ -6,6 +6,8 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 import java.io.File;
+//import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "0.7",
@@ -33,17 +35,23 @@ public class App implements Callable<Integer> {
     }
 
     @Override
-    public Integer call() throws Exception {
+    public Integer call() {
         //System.out.println("Working Directory: " + System.getProperty("user.dir"));
         //filepath1 = new File(System.getProperty("user.dir") + "//" + filepath1.getPath());
         //filepath2 = new File(System.getProperty("user.dir") + "//" + filepath2.getPath());
+
         System.out.println("File 1: " + filepath1);
         System.out.println("File 2: " + filepath2);
         //filepath1 = System.getProperty("user.dir") + filepath1;
 
-        String rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format);
+        String rezStr = "";
+        try {
+            rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
         System.out.println(rezStr);
-        //System.out.println(rezStr);
         return 0;
     }
 }

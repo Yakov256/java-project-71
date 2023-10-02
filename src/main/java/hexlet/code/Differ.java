@@ -4,6 +4,7 @@ package hexlet.code;
 //import hexlet.code.formatters.Plain;
 //import hexlet.code.formatters.Stylish;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -12,45 +13,18 @@ import static hexlet.code.Parser.readTreeMapFromFile;
 
 public class Differ {
 
-    /*public static String getLineDifferences(String key, Object map1Value, Object map2Value) {
-        StringBuilder rezStr = new StringBuilder();
-        if (map1Value != null) {
-            if (map2Value == null) { //удалено во тором файле
-                rezStr.append("- " + key + ": " + map1Value + "\n");
-                //rezStr.append("+ " + key + ": " + map2Value + "\n");
-            } else if (map1Value.equals(map2Value)) { // значения равны
-                rezStr.append("  " + key + ": " + map1Value + "\n");
-            } else { //else if (!map1Value.equals(map2Value))  //изменено во тором файле
-                rezStr.append("- " + key + ": " + map1Value + "\n");
-                rezStr.append("+ " + key + ": " + map2Value + "\n");
-            }
-        } else {
-            if (map2Value != null) { //Есть только в первом
-                //rezStr.append("- " + key + ": " + map1Value + "\n");
-                rezStr.append("+ " + key + ": " + map2Value + "\n");
-            }
-        }
-        return rezStr.toString();
-    }*/
-
-    //public static DiffersStates getLineDifferencesState(String map1Value, String map2Value) {
     public static DiffersStates getLineDifferencesState(Object map1Value, Object map2Value) {
         StringBuilder rezStr = new StringBuilder();
         if (map1Value != null) {
             if (map2Value == null) { //удалено во тором файле
-                //rezStr.append("- " + ": " + map1Value + "\n");
                 return DiffersStates.removed;
             } else if (map1Value.equals(map2Value)) { // значения равны
-                //rezStr.append("  " + ": " + map1Value + "\n");
                 return DiffersStates.notChanged;
-            } else { //else if (!map1Value.equals(map2Value))  //изменено во тором файле
-                //rezStr.append("- " + ": " + map1Value + "\n");
-                //rezStr.append("+ " + ": " + map2Value + "\n");
+            } else { //изменено во втором файле
                 return DiffersStates.updated;
             }
         } else {
             if (map2Value != null) { //Есть только в первом
-                //rezStr.append("+ " + ": " + map2Value + "\n");
                 return DiffersStates.added;
             }
         }
@@ -58,47 +32,6 @@ public class Differ {
         return DiffersStates.notChanged;
     }
 
-    /*public static void soutTreeMap(TreeMap<String, Object> treeMap) {
-        System.out.println("-------------------------------------------");
-        System.out.println(treeMap);
-        System.out.println("-------------------------------------------");
-    }*/
-
-    /*private static String toStringExceptNull(Object obj) {
-        if (obj == null) {
-            return null;
-        } else {
-            return obj.toString();
-        }
-    }*/
-/*
-    public static String getTreeMapsDifferences(TreeMap<String, Object> treeMap1, TreeMap<String, Object> treeMap2) {
-        Object map1Value;
-        Object map2Value;
-
-        //soutTreeMap(treeMap1);
-        //soutTreeMap(treeMap2);
-
-        TreeMap<String, Object> keysFromBothFile = new TreeMap<>();
-        keysFromBothFile.putAll(treeMap1);
-        keysFromBothFile.putAll(treeMap2);
-
-        StringBuilder rezStr = new StringBuilder("{\n");
-
-        for (Map.Entry<String, Object> entry : keysFromBothFile.entrySet()) {
-
-            //map1Value = toStringExceptNull(treeMap1.get(entry.getKey())); ///***
-            //map2Value = toStringExceptNull(treeMap2.get(entry.getKey()));
-            map1Value = treeMap1.get(entry.getKey());
-            map2Value = treeMap2.get(entry.getKey());
-            rezStr.append(getLineDifferences(entry.getKey(), map1Value, map2Value));
-        }
-
-        rezStr.append("}\n");
-        return rezStr.toString();
-
-    }
-*/
     public static List<Differs> getTreeMapsDifferencesList(TreeMap<String, Object> treeMap1,
                                                            TreeMap<String, Object> treeMap2) {
         List<Differs> treeMapsDifferences = new LinkedList<>();
@@ -111,8 +44,6 @@ public class Differ {
 
         for (Map.Entry<String, Object> entry : keysFromBothFile.entrySet()) {
 
-            //map1Value = toStringExceptNull(treeMap1.get(entry.getKey()));///***
-            //map2Value = toStringExceptNull(treeMap2.get(entry.getKey()));
             map1Value = treeMap1.get(entry.getKey());
             map2Value = treeMap2.get(entry.getKey());
 
@@ -123,10 +54,9 @@ public class Differ {
         }
 
         return treeMapsDifferences;
-
     }
 
-    public static String generate(String filePath1, String filePath2, String formatName) throws Exception {
+    public static String generate(String filePath1, String filePath2, String formatName) throws IOException {
         TreeMap<String, Object> treeMap1 = readTreeMapFromFile(filePath1);
         TreeMap<String, Object> treeMap2 = readTreeMapFromFile(filePath2);
         ///--- переделываю на новый формат
@@ -140,9 +70,7 @@ public class Differ {
         System.out.println(Stylish.getFormattedDiffers(treeMapsDifferences));
         System.out.println("------------------------ TreeMapsDifferences ------------------------");
         */
-        ///---
+
         return Formatter.getFormattedString(treeMapsDifferences, formatName);
-        //return getTreeMapsDifferences(treeMap1, treeMap2);
-        //return Stylish.getFormattedDiffers(treeMapsDifferences);
     }
 }

@@ -29,17 +29,6 @@ public class Plain {
         StringBuilder rezStr = new StringBuilder();
 
         for (Differs diff: diffs) {
-            System.out.println(diff);
-            /*switch (diff.getStatus()) {
-                case DiffersStates.removed -> rezStr.append("- " + ": " + diff.getOldValue() + "\n");
-                case DiffersStates.notChanged -> rezStr.append("  " + ": " + diff.getOldValue() + "\n");
-                case DiffersStates.updated  -> {
-                    rezStr.append("- " + ": " + diff.getOldValue() + "\n");
-                    rezStr.append("+ " + ": " + diff.getNewValue() + "\n");
-                }
-                case DiffersStates.removed  -> rezStr.append("+ " + ": " + diff.getNewValue() + "\n");
-            }
-            */
             if (diff.getStatus() == DiffersStates.removed) {
                 rezStr.append("Property '" + diff.getKey() + "' was removed\n");
             } else if (diff.getStatus() == DiffersStates.updated) {

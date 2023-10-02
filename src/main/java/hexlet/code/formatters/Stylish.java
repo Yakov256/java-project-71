@@ -4,7 +4,6 @@ import hexlet.code.Differs;
 import hexlet.code.DiffersStates;
 
 import java.util.List;
-//import java.util.Map;
 
 public class Stylish {
 

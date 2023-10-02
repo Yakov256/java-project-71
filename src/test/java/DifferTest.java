@@ -89,9 +89,7 @@ public class DifferTest {
                 + "+ setting3: none\n"
                 + "}\n";
 
-        //List<Differs> TreeMapsDifferences = getTreeMapsDifferencesList(testTreeMap1, testTreeMap2);
         String rezStr = Stylish.getFormattedDiffers(getTreeMapsDifferencesList(testTreeMap1, testTreeMap2));
-
         assertEquals(rezStr, referenceStr);
     }
 
