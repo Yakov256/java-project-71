@@ -126,12 +126,12 @@ public class Differ {
 
     }
 
-
-    public static String generate(String filePath1, String filePath2) throws Exception {
+    public static String generate(String filePath1, String filePath2, String formatName) throws Exception {
         TreeMap<String, Object> treeMap1 = readTreeMapFromFile(filePath1);
         TreeMap<String, Object> treeMap2 = readTreeMapFromFile(filePath2);
         ///--- переделываю на новый формат
         List<Differs> treeMapsDifferences = getTreeMapsDifferencesList(treeMap1, treeMap2);
+        /*
         System.out.println("------------------------ TreeMapsDifferences ------------------------");
         System.out.println(treeMapsDifferences);
         System.out.println("------------------------ Plain ------------------------");
@@ -139,8 +139,10 @@ public class Differ {
         System.out.println("------------------------ Stylish ------------------------");
         System.out.println(Stylish.getFormattedDiffers(treeMapsDifferences));
         System.out.println("------------------------ TreeMapsDifferences ------------------------");
+        */
         ///---
+        return Formatter.getFormattedString(treeMapsDifferences, formatName);
         //return getTreeMapsDifferences(treeMap1, treeMap2);
-        return Stylish.getFormattedDiffers(treeMapsDifferences);
+        //return Stylish.getFormattedDiffers(treeMapsDifferences);
     }
 }

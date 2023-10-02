@@ -8,7 +8,7 @@ import java.util.List;
 public class Plain {
 
     private static String getStringOrComplexValue(Object value){
-        System.out.println(value.getClass().getSimpleName());
+        //System.out.println(value.getClass().getSimpleName());
         if (value.toString().contains("[") || value.toString().contains("{")) {
             return "[complex value]";
         } else if (value instanceof String) {

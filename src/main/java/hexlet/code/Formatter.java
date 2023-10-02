@@ -1,13 +1,18 @@
 package hexlet.code;
 
+import hexlet.code.formatters.Plain;
+import hexlet.code.formatters.Stylish;
+
+import java.util.List;
+
 public class Formatter {
 
-    public static void sout(Formats format, String str) {
-        if (format == Formats.plain) {
-            System.out.println("");
-        } else {
-            System.out.println("Differences between files:");
-            System.out.println(str);
-        }
+    public static String getFormattedString(List<Differs> diffs, String formatName) {
+
+        return switch (formatName) {
+            case "plain" -> Plain.getFormattedDiffers(diffs);
+            default        -> Stylish.getFormattedDiffers(diffs);
+        };
+
     }
 }

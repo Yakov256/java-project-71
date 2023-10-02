@@ -41,8 +41,8 @@ public class App implements Callable<Integer> {
         System.out.println("File 2: " + filepath2);
         //filepath1 = System.getProperty("user.dir") + filepath1;
 
-        String rezStr = Differ.generate(filepath1.toString(), filepath2.toString());
-        Formatter.sout(Formats.stylish, rezStr);
+        String rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format);
+        System.out.println(rezStr);
         //System.out.println(rezStr);
         return 0;
     }
