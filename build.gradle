@@ -47,6 +47,6 @@ compileJava {
 }
 
 compileJava {
-    options.release = 17
+    options.release = 20
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
