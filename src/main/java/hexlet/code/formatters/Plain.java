@@ -27,10 +27,14 @@ public class Plain {
     private static String getPlainFormattedString(Object value) {
         if (value.toString().contains("[") || value.toString().contains("{")) {
             return "[complex value]";
-        } else if (value.equals("null")) {
-            return null;
-        } else {
+        }  else if (value instanceof String) {
+            if (value.equals("null")) {
+                return null;
+            }
             return "'" + value + "'";
+        }
+        else {
+            return value.toString();
         }
     }
 
@@ -40,11 +44,14 @@ public class Plain {
             return null;
         }
 
+        /*
         if (value instanceof String) {
             return getPlainFormattedString(value);
         } else {
             return value.toString();
         }
+        */
+        return getPlainFormattedString(value);
 
     }
 
