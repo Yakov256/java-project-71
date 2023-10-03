@@ -2,7 +2,6 @@ package hexlet.code.formatters;
 
 import hexlet.code.Differs;
 import hexlet.code.DiffersStates;
-
 import java.util.List;
 
 public class Plain {
@@ -25,42 +24,28 @@ public class Plain {
         }
     }*/
 
+    private static String getPlainFormattedString(Object value) {
+        if (value.toString().contains("[") || value.toString().contains("{")) {
+            return "[complex value]";
+        } else if (value.equals("null")) {
+            return null;
+        } else {
+            return "'" + value + "'";
+        }
+    }
+
     private static String getStringOrComplexValue(Object value) {
         //System.out.println(value.getClass().getSimpleName());
-        String rezStr;
-
         if (value == null) {
             return null;
         }
 
-        if (value.toString().contains("[") || value.toString().contains("{")) {
-            rezStr = "[complex value]";
-        } else if (value instanceof String) {
-            if (value.equals("null")) {
-                rezStr = null;
-            } else {
-                rezStr = "'" + value + "'";
-            }
-        } else {
-            rezStr = value.toString();
-        }
-
-        /*
-        if (value == null) {
-            rezStr = null; //return null;
-        } else if (value.toString().contains("[") || value.toString().contains("{")) {
-            return "[complex value]";
-        } else if (value instanceof String) {
-            if (value.equals("null")) {
-                return null;
-            } else {
-                return "'" + value + "'";
-            }
+        if (value instanceof String) {
+            return getPlainFormattedString(value);
         } else {
             return value.toString();
-        }*/
+        }
 
-        return rezStr;
     }
 
     public static String getFormattedDiffers(List<Differs> diffs) {

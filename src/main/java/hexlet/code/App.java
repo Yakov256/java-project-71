@@ -8,6 +8,7 @@ import picocli.CommandLine.Parameters;
 import java.io.File;
 //import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "0.7",
@@ -46,7 +47,7 @@ public class App implements Callable<Integer> {
 
         String rezStr = "";
         try {
-            rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format);
+            rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format.toLowerCase());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

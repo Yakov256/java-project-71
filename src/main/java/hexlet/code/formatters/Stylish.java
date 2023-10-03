@@ -1,8 +1,6 @@
 package hexlet.code.formatters;
 
 import hexlet.code.Differs;
-//import hexlet.code.DiffersStates;
-
 import java.util.List;
 
 public class Stylish {
@@ -16,7 +14,6 @@ public class Stylish {
     }
 
     public static String getFormattedDiffers(List<Differs> diffs) {
-
         StringBuilder rezStr = new StringBuilder("{\n");
 
         for (Differs diff: diffs) {
