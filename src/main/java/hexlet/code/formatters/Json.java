@@ -2,15 +2,12 @@ package hexlet.code.formatters;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hexlet.code.Differ;
 import hexlet.code.Differs;
-
-import java.io.IOException;
 import java.util.List;
 
 public class Json {
 
-    public static String getFormattedDiffers(List<Differs> diffs){
+    public static String getFormattedDiffers(List<Differs> diffs) {
         ObjectMapper objectMapper = new ObjectMapper();
         StringBuilder rezStr = new StringBuilder("{\n");
 
