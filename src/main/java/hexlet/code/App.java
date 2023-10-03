@@ -45,7 +45,8 @@ public class App implements Callable<Integer> {
 
         String rezStr = "";
         try {
-            rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format.toLowerCase());
+            //rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format.toLowerCase());
+            rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
