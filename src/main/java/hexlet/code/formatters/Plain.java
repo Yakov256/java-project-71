@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Plain {
 
-    private static String getStringOrComplexValue(Object value) {
+   /* private static String getStringOrComplexValue(Object value) {
         //System.out.println(value.getClass().getSimpleName());
         if (value == null) {
             return null;
@@ -22,9 +22,9 @@ public class Plain {
         } else {
             return value.toString();
         }
-    }
+    }*/
 
-    /*
+
     private static String getPlainFormattedString(Object value) {
         if (value.toString().contains("[") || value.toString().contains("{")) {
             return "[complex value]";
@@ -45,7 +45,6 @@ public class Plain {
         }
         return getPlainFormattedString(value);
     }
-     */
 
     public static String getFormattedDiffers(List<Differs> diffs) {
         StringBuilder rezStr = new StringBuilder();

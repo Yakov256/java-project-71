@@ -1,9 +1,5 @@
 package hexlet.code;
 
-//import org.json.simple.parser.ParseException;
-//import hexlet.code.formatters.Plain;
-//import hexlet.code.formatters.Stylish;
-
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
