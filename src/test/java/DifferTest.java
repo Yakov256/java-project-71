@@ -1,33 +1,23 @@
-//import hexlet.code.Differ;
-//import hexlet.code.Parser;
-//import hexlet.code.Parser;
-//import hexlet.code.Differs;
-//import hexlet.code.formatters.Plain;
-import hexlet.code.formatters.Stylish;
-import org.json.simple.parser.ParseException;
-import org.junit.jupiter.api.Test;
 
-//import java.io.IOException;
-//import java.util.HashMap;
-//import java.util.Map;
-//import java.io.IOException;
-//import java.util.List;
+import hexlet.code.DiffersStates;;
+import org.junit.jupiter.api.Test;
 import java.util.TreeMap;
 
+import static hexlet.code.Differ.getLineDifferencesState;
 import static hexlet.code.Differ.getTreeMapsDifferencesList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
     @Test
-    void getTreeMapsDifferencesPlainTest() throws ParseException {
+    void getTreeMapsDifferencesListTest() {
         TreeMap<String, Object> testTreeMap1 = new TreeMap<>();
 
         /*char[] abc =  {'a', 'b', 'c'};
         char[] def =  {'d', 'e', 'f'};
         int[] numbers1234 = {1, 2, 3, 4};
         int[] numbers2345 = {2, 3, 4, 5};
-        int[] numbers345 = {3, 4, 5};*/
+        /*int[] numbers345 = {3, 4, 5};*/
 
         //testTreeMap1.put("chars1", abc);
         testTreeMap1.put("chars1", "{'a', 'b', 'c'}");
@@ -65,32 +55,34 @@ public class DifferTest {
         testTreeMap2.put("setting2", "300");
         testTreeMap2.put("setting3", "none");
 
-        String referenceStr = "{\n"
-                + "  chars1: {'a', 'b', 'c'}\n"
-                + "- chars2: {'d', 'e', 'f'}\n"
-                + "+ chars2: false\n"
-                + "- checked: false\n"
-                + "+ checked: true\n"
-                + "+ default: {\"value1\", \"value2\"}\n"
-                + "- id: 45\n"
-                + "- key1: value1\n"
-                + "+ key2: value2\n"
-                + "  numbers1: {1, 2, 3, 4}\n"
-                + "- numbers2: {2, 3, 4, 5}\n"
-                + "+ numbers2: {22, 33, 44, 55}\n"
-                + "- numbers3: {3, 4, 5}\n"
-                + "+ numbers4: {4, 5, 6}\n"
-                + "+ obj1: {nestedKey=value, isNested=true}\n"
-                + "- setting1: Some value\n"
-                + "+ setting1: Another value\n"
-                + "- setting2: 200\n"
-                + "+ setting2: 300\n"
-                + "- setting3: true\n"
-                + "+ setting3: none\n"
-                + "}\n";
+        String referenceStr = "[\"chars1\", \"notChanged\", \"{'a', 'b', 'c'}\", \"{'a', 'b', 'c'}\", "
+                + "\"chars2\", \"updated\", \"{'d', 'e', 'f'}\", \"false\", \"checked\", \"updated\", \"false\", "
+                + "\"true\", \"default\", \"added\", \"null\", \"{\"value1\", \"value2\"}\", \"id\", \"removed\", "
+                + "\"45\", \"null\", \"key1\", \"removed\", \"value1\", \"null\", \"key2\", \"added\", \"null\", "
+                + "\"value2\", \"numbers1\", \"notChanged\", \"{1, 2, 3, 4}\", \"{1, 2, 3, 4}\", \"numbers2\", "
+                + "\"updated\", \"{2, 3, 4, 5}\", \"{22, 33, 44, 55}\", \"numbers3\", \"removed\", \"{3, 4, 5}\", "
+                + "\"null\", \"numbers4\", \"added\", \"null\", \"{4, 5, 6}\", \"obj1\", \"added\", \"null\", "
+                + "\"{nestedKey=value, isNested=true}\", \"setting1\", \"updated\", \"Some value\", \"Another value\""
+                + ", \"setting2\", \"updated\", \"200\", \"300\", \"setting3\", \"updated\", \"true\", \"none\"]";
 
-        String rezStr = Stylish.getFormattedDiffers(getTreeMapsDifferencesList(testTreeMap1, testTreeMap2));
+        String rezStr = getTreeMapsDifferencesList(testTreeMap1, testTreeMap2).toString();
         assertEquals(rezStr, referenceStr);
+    }
+
+    @Test
+    void getLineDifferencesStateTest() {
+        int[] numbers1234 = {1, 2, 3, 4};
+        int[] numbers2345 = {2, 3, 4, 5};
+
+        assertEquals(DiffersStates.notChanged, getLineDifferencesState(null, null));
+        assertEquals(DiffersStates.notChanged, getLineDifferencesState(numbers1234, numbers1234));
+        assertEquals(DiffersStates.added, getLineDifferencesState(null, "string"));
+        assertEquals(DiffersStates.added, getLineDifferencesState(null, 123));
+        assertEquals(DiffersStates.removed, getLineDifferencesState("string", null));
+        assertEquals(DiffersStates.updated, getLineDifferencesState("string1", "string2"));
+        assertEquals(DiffersStates.updated, getLineDifferencesState(123, 234));
+        assertEquals(DiffersStates.updated, getLineDifferencesState(numbers1234, numbers2345));
+
     }
 
 }

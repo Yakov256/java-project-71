@@ -27,8 +27,27 @@ public class Plain {
 
     private static String getStringOrComplexValue(Object value) {
         //System.out.println(value.getClass().getSimpleName());
+        String rezStr;
+
         if (value == null) {
             return null;
+        }
+
+        if (value.toString().contains("[") || value.toString().contains("{")) {
+            rezStr = "[complex value]";
+        } else if (value instanceof String) {
+            if (value.equals("null")) {
+                rezStr = null;
+            } else {
+                rezStr = "'" + value + "'";
+            }
+        } else {
+            rezStr = value.toString();
+        }
+
+        /*
+        if (value == null) {
+            rezStr = null; //return null;
         } else if (value.toString().contains("[") || value.toString().contains("{")) {
             return "[complex value]";
         } else if (value instanceof String) {
@@ -39,7 +58,9 @@ public class Plain {
             }
         } else {
             return value.toString();
-        }
+        }*/
+
+        return rezStr;
     }
 
     public static String getFormattedDiffers(List<Differs> diffs) {
