@@ -43,7 +43,7 @@ public class Stylish {
              */
         }
 
-        rezStr.append("}\n");
+        rezStr.append("}");
         return rezStr.toString();
     }
 }
