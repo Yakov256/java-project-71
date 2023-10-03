@@ -57,7 +57,7 @@ public class StylishTest {
                 + "+ setting2: 300\n"
                 + "- setting3: true\n"
                 + "+ setting3: none\n"
-                + "}\n";
+                + "}";
 
         assertEquals(rezStr, referenceStr);
     }
