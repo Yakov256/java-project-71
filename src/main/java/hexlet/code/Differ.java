@@ -14,23 +14,41 @@ import static hexlet.code.Parser.readTreeMapFromFile;
 public class Differ {
 
     public static DiffersStates getLineDifferencesState(Object map1Value, Object map2Value) {
-        StringBuilder rezStr = new StringBuilder();
-        if (map1Value != null) {
-            if (map2Value == null) { //удалено во тором файле
-                return DiffersStates.removed;
-            } else if (map1Value.equals(map2Value)) { // значения равны
-                return DiffersStates.notChanged;
-            } else { //изменено во втором файле
-                return DiffersStates.updated;
-            }
-        } else {
-            if (map2Value != null) { //Есть только в первом
+
+        if (map1Value == null) {
+            if (map2Value != null) { // Добавлено
                 return DiffersStates.added;
             }
+        } else if (map2Value == null) { // Удалено
+            return DiffersStates.removed;
+        } else if (!map1Value.equals(map2Value)) { //Изменено
+            return DiffersStates.updated;
         }
 
         return DiffersStates.notChanged;
     }
+
+/*
+    public static DiffersStates getLineDifferencesState_old(Object map1Value, Object map2Value) {
+        StringBuilder rezStr = new StringBuilder();
+        DiffersStates differsStates = DiffersStates.notChanged;
+        if (map1Value != null) {
+            if (map2Value == null) { //удалено во тором файле
+                //return DiffersStates.removed;
+                differsStates = DiffersStates.removed;
+            } else if (!map1Value.equals(map2Value)) { // изменено во втором файле
+                //return DiffersStates.notChanged;
+                differsStates = DiffersStates.updated;
+            //} else { //изменено во втором файле
+                //return DiffersStates.updated;
+            }
+        } else if (map2Value != null) { //Есть только в первом
+            //return DiffersStates.added;
+            differsStates = DiffersStates.added;
+        }
+
+        return differsStates;
+    }*/
 
     public static List<Differs> getTreeMapsDifferencesList(TreeMap<String, Object> treeMap1,
                                                            TreeMap<String, Object> treeMap2) {
