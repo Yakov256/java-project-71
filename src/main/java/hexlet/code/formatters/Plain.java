@@ -21,7 +21,7 @@ public class Plain {
             return "'" + value + "'";
         } else {
             return value.toString();
-        }
+        }///
     }*/
 
     private static String getPlainFormattedString(Object value) {
