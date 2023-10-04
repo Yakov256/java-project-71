@@ -19,15 +19,15 @@ public class Stylish {
         for (Differs diff: diffs) {
 
             switch (diff.getStatus()) {
-                case removed -> rezStr.append("- " + diff.getKey() + ": "
+                case removed -> rezStr.append("  - " + diff.getKey() + ": "
                         + toStringExceptNull(diff.getOldValue()) + "\n");
-                case notChanged -> rezStr.append("  " + diff.getKey() + ": "
+                case notChanged -> rezStr.append("    " + diff.getKey() + ": "
                         + toStringExceptNull(diff.getOldValue()) + "\n");
                 case updated  -> {
-                    rezStr.append("- " + diff.getKey() + ": " + toStringExceptNull(diff.getOldValue()) + "\n");
-                    rezStr.append("+ " + diff.getKey() + ": " + toStringExceptNull(diff.getNewValue()) + "\n");
+                    rezStr.append("  - " + diff.getKey() + ": " + toStringExceptNull(diff.getOldValue()) + "\n");
+                    rezStr.append("  + " + diff.getKey() + ": " + toStringExceptNull(diff.getNewValue()) + "\n");
                 }
-                default  -> rezStr.append("+ " + diff.getKey() + ": " + toStringExceptNull(diff.getNewValue()) + "\n");
+                default  -> rezStr.append("  + " + diff.getKey() + ": " + toStringExceptNull(diff.getNewValue()) + "\n");
             }
             /*
             if (diff.getStatus() == DiffersStates.removed) {
