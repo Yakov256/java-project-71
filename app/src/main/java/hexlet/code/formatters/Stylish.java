@@ -27,7 +27,8 @@ public class Stylish {
                     rezStr.append("  - " + diff.getKey() + ": " + toStringExceptNull(diff.getOldValue()) + "\n");
                     rezStr.append("  + " + diff.getKey() + ": " + toStringExceptNull(diff.getNewValue()) + "\n");
                 }
-                default  -> rezStr.append("  + " + diff.getKey() + ": " + toStringExceptNull(diff.getNewValue()) + "\n");
+                default  -> rezStr.append("  + " + diff.getKey() + ": " + toStringExceptNull(diff.getNewValue())
+                        + "\n");
             }
             /*
             if (diff.getStatus() == DiffersStates.removed) {
