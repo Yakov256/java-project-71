@@ -3,8 +3,6 @@ package hexlet.code;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
-
-//import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -36,7 +34,6 @@ public class Parser {
             System.out.println(e.getMessage());
         }
 
-        //String strFromFile = new String(Files.readAllBytes(Paths.get(filePath)));
         rezTreeMap = mapper.readValue(strFromFile, new TypeReference<>() { });
 
         // "Искуственно" исправляем, проблему когда текстовое "null" распознается как null

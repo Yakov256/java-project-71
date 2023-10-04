@@ -13,7 +13,6 @@ public class Json {
 
         for (Differs diff: diffs) {
             try {
-                //jsonStr = objectMapper.writeValueAsString(diffs);
                 rezStr.append(objectMapper.writeValueAsString(diff));
             } catch (JsonProcessingException e) {
                 System.out.println("Failed to generate json!");

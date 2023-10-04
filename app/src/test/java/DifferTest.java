@@ -82,7 +82,6 @@ public class DifferTest {
         assertEquals(DiffersStates.updated, getLineDifferencesState("string1", "string2"));
         assertEquals(DiffersStates.updated, getLineDifferencesState(123, 234));
         assertEquals(DiffersStates.updated, getLineDifferencesState(numbers1234, numbers2345));
-
     }
 
 }
