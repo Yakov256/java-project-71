@@ -48,24 +48,28 @@ public class Plain {
 
     public static String getFormattedDiffers(List<Differs> diffs) {
         StringBuilder rezStr = new StringBuilder();
-        boolean firstStep = true;
+        //boolean firstStep = true;
+        boolean strAdded = false;
         for (Differs diff: diffs) {
 
-            if (!firstStep) {
-                rezStr.append("'\n");
-            } else {
-                firstStep = false;
+            if (strAdded) {
+                rezStr.append("\n");
+                strAdded = false;
             }
+
 
             if (diff.getStatus() == DiffersStates.removed) {
                 rezStr.append("Property '" + diff.getKey() + "' was removed");
+                strAdded = true;
             } else if (diff.getStatus() == DiffersStates.updated) {
                 rezStr.append("Property '" + diff.getKey() + "' was updated. From "
                         + getStringOrComplexValue(diff.getOldValue())
                         + " to " + getStringOrComplexValue(diff.getNewValue()));
+                strAdded = true;
             } else if (diff.getStatus() == DiffersStates.added) {
-                rezStr.append("Property '" + diff.getKey() + "' was added with value: '"
+                rezStr.append("Property '" + diff.getKey() + "' was added with value: "
                         + getStringOrComplexValue(diff.getNewValue()));
+                strAdded = true;
             }
         }
 
