@@ -12,6 +12,8 @@ public class DifferTest {
     @Test
     void getTreeMapsDifferencesListTest() {
         TreeMap<String, Object> testTreeMap1 = new TreeMap<>();
+        final int ID45 = 45;
+        final int SETTING200 = 200;
 
         /*char[] abc =  {'a', 'b', 'c'};
         char[] def =  {'d', 'e', 'f'};
@@ -25,13 +27,13 @@ public class DifferTest {
         testTreeMap1.put("chars2", "{'d', 'e', 'f'}");
         testTreeMap1.put("checked", false);
         testTreeMap1.put("default", null);
-        testTreeMap1.put("id", 45);
+        testTreeMap1.put("id", ID45);
         testTreeMap1.put("key1", "value1");
         testTreeMap1.put("numbers1", "{1, 2, 3, 4}");
         testTreeMap1.put("numbers2", "{2, 3, 4, 5}");
         testTreeMap1.put("numbers3", "{3, 4, 5}");
         testTreeMap1.put("setting1", "Some value");
-        testTreeMap1.put("setting2", 200);
+        testTreeMap1.put("setting2", SETTING200);
         testTreeMap1.put("setting3", true);
 
         TreeMap<String, Object> testTreeMap2 = new TreeMap<>();
