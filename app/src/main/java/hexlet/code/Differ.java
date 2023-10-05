@@ -17,34 +17,12 @@ public class Differ {
             }
         } else if (map2Value == null) { // Удалено
             return DiffersStates.removed;
-        } else if (!map1Value.equals(map2Value)) { //Изменено
+        } else if (!map1Value.equals(map2Value)) { // Изменено
             return DiffersStates.updated;
         }
 
-        return DiffersStates.notChanged;
+        return DiffersStates.notChanged; // Нет изменений
     }
-
-/*
-    public static DiffersStates getLineDifferencesState_old(Object map1Value, Object map2Value) {
-        StringBuilder rezStr = new StringBuilder();
-        DiffersStates differsStates = DiffersStates.notChanged;
-        if (map1Value != null) {
-            if (map2Value == null) { //удалено во тором файле
-                //return DiffersStates.removed;
-                differsStates = DiffersStates.removed;
-            } else if (!map1Value.equals(map2Value)) { // изменено во втором файле
-                //return DiffersStates.notChanged;
-                differsStates = DiffersStates.updated;
-            //} else { //изменено во втором файле
-                //return DiffersStates.updated;
-            }
-        } else if (map2Value != null) { //Есть только в первом
-            //return DiffersStates.added;
-            differsStates = DiffersStates.added;
-        }
-
-        return differsStates;
-    }*/
 
     public static List<Differs> getTreeMapsDifferencesList(TreeMap<String, Object> treeMap1,
                                                            TreeMap<String, Object> treeMap2) {
@@ -73,27 +51,17 @@ public class Differ {
     public static String generate(String filePath1, String filePath2, String formatName) throws IOException {
         TreeMap<String, Object> treeMap1 = readTreeMapFromFile(filePath1);
         TreeMap<String, Object> treeMap2 = readTreeMapFromFile(filePath2);
-        ///--- переделываю на новый формат
-        List<Differs> treeMapsDifferences = getTreeMapsDifferencesList(treeMap1, treeMap2);
-        /*
-        System.out.println("------------------------ TreeMapsDifferences ------------------------");
-        System.out.println(treeMapsDifferences);
-        System.out.println("------------------------ Plain ------------------------");
-        System.out.println(Plain.getFormattedDiffers(treeMapsDifferences));
-        System.out.println("------------------------ Stylish ------------------------");
-        System.out.println(Stylish.getFormattedDiffers(treeMapsDifferences));
-        System.out.println("------------------------ TreeMapsDifferences ------------------------");
-        */
 
+        List<Differs> treeMapsDifferences = getTreeMapsDifferencesList(treeMap1, treeMap2);
         return Formatter.getFormattedString(treeMapsDifferences, formatName);
     }
 
     // Для тестов hexlet check, без этого метода не проходят
-    public static String generate(String filePath1, String filePath2) throws IOException {
+    /*public static String generate(String filePath1, String filePath2) throws IOException {
         TreeMap<String, Object> treeMap1 = readTreeMapFromFile(filePath1);
         TreeMap<String, Object> treeMap2 = readTreeMapFromFile(filePath2);
 
         List<Differs> treeMapsDifferences = getTreeMapsDifferencesList(treeMap1, treeMap2);
         return Formatter.getFormattedString(treeMapsDifferences, "stylish");
-    }
+    }*/
 }

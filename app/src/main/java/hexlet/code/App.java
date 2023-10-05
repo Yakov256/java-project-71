@@ -15,21 +15,17 @@ public final class App implements Callable<Integer> {
 
     @Parameters(index = "0", description = "path to first file",
             //defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file1.json")
-            //defaultValue = "/home/yakov/IdeaProjects/java-project-71/app/src/main/resources/file1.yml")
             defaultValue = "")
-    private File filepath1 = new File("/resources/file1.json");
+    private File filepath1 = new File("");
 
     @Parameters(index = "1", description = "path to second file",
             //defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file2.json")
-            //defaultValue = "/home/yakov/IdeaProjects/java-project-71/app/src/main/resources/file2.yml")
             defaultValue = "")
-    private File filepath2 = new File("/resources/file2.json");
+    private File filepath2 = new File("");
 
     @Option(names = {"-f", "--format"}, description = "[default: stylish]")
     private String format = "stylish";
 
-    // this example implements Callable, so parsing, error handling and handling user
-    // requests for usage help or version help can be done with one line of code.
     public static void main(String... args) {
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
@@ -37,16 +33,15 @@ public final class App implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        if (filepath1.toString().equals("") || filepath2.toString().equals("")) {
+        /*if (filepath1.toString().equals("") || filepath2.toString().equals("")) {
             return 0;
-        } else {
+        } else {*/
             //System.out.println("Working Directory: " + System.getProperty("user.dir"));
             //filepath1 = new File(System.getProperty("user.dir") + "//" + filepath1.getPath());
             //filepath2 = new File(System.getProperty("user.dir") + "//" + filepath2.getPath());
 
             //System.out.println("File 1: " + filepath1);
             //System.out.println("File 2: " + filepath2);
-            //filepath1 = System.getProperty("user.dir") + filepath1;
 
             String rezStr = "";
             try {
@@ -56,7 +51,7 @@ public final class App implements Callable<Integer> {
             }
 
             System.out.println(rezStr);
-        }
+        //}
         return 0;
     }
 }

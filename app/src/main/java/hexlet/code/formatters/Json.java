@@ -9,7 +9,6 @@ public class Json {
 
     public static String getFormattedDiffers(List<Differs> diffs) {
         ObjectMapper objectMapper = new ObjectMapper();
-        //StringBuilder rezStr = new StringBuilder("{\n");
         StringBuilder rezStr = new StringBuilder();
 
         for (Differs diff: diffs) {
@@ -21,10 +20,8 @@ public class Json {
             }
             rezStr.append("\n");
         }
-        //rezStr.append("}");
 
         return rezStr.toString();
-
     }
 
 }

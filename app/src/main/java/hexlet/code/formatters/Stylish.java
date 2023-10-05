@@ -30,18 +30,6 @@ public class Stylish {
                 default  -> rezStr.append("  + " + diff.getKey() + ": " + toStringExceptNull(diff.getNewValue())
                         + "\n");
             }
-            /*
-            if (diff.getStatus() == DiffersStates.removed) {
-                rezStr.append("- " + diff.getKey() + ": " + toStringExceptNull(diff.getOldValue()) + "\n");
-            } else if (diff.getStatus() == DiffersStates.notChanged) {
-                rezStr.append("  " + diff.getKey() + ": " + toStringExceptNull(diff.getOldValue()) + "\n");
-            } else if (diff.getStatus() == DiffersStates.updated) {
-                rezStr.append("- " + diff.getKey() + ": " + toStringExceptNull(diff.getOldValue()) + "\n");
-                rezStr.append("+ " + diff.getKey() + ": " + toStringExceptNull(diff.getNewValue()) + "\n");
-            } else if (diff.getStatus() == DiffersStates.added) {
-                rezStr.append("+ " + diff.getKey() + ": " + toStringExceptNull(diff.getNewValue()) + "\n");
-            }
-             */
         }
 
         rezStr.append("}");
