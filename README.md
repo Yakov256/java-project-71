@@ -9,11 +9,11 @@
 ***Описание***  
 Вычислитель отличий – программа, определяющая разницу между двумя структурами данных. Это популярная задача, для решения которой существует множество онлайн-сервисов, например: http://www.jsondiff.com/. Подобный механизм используется при выводе тестов или при автоматическом отслеживании изменении в конфигурационных файлах.
 
-***Возможности утилиты:***  
+***Возможности утилиты***  
 Поддержка разных входных форматов: yaml и json    
 Генерация отчета в виде plain text, stylish и json  
 
-***Пример использования:***  
+***Пример использования***  
 [Step 5 - Comparison of flat files (JSON)](https://asciinema.org/a/HnPUad2apHyU8xjeMZ5AW4tpB)  
 [Step 7 - Comparison of flat files (yaml)](https://asciinema.org/a/srguS7bJtSx4H0WI08vWNI8tM)  
 [Step 8 - Comparison files with a recursive structure](https://asciinema.org/a/lL032dksa6STzvS2RgeMcAepD)    
