@@ -57,11 +57,11 @@ public class Differ {
     }
 
     // Для тестов hexlet check, без этого метода не проходят
-    /*public static String generate(String filePath1, String filePath2) throws IOException {
+    public static String generate(String filePath1, String filePath2) throws IOException {
         TreeMap<String, Object> treeMap1 = readTreeMapFromFile(filePath1);
         TreeMap<String, Object> treeMap2 = readTreeMapFromFile(filePath2);
 
         List<Differs> treeMapsDifferences = getTreeMapsDifferencesList(treeMap1, treeMap2);
         return Formatter.getFormattedString(treeMapsDifferences, "stylish");
-    }*/
+    }
 }

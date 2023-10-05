@@ -32,7 +32,7 @@ public final class Differs {
 
     @Override
     public String toString() {
-        return "{key:" + key + "; status:" + status + "; oldValue:" + oldValue + "; newValue:" + newValue + "}";
-        //return ("\"" + key + "\", \"" + status + "\", \"" + oldValue + "\", \"" + newValue + "\"");
+        //return "{key:" + key + "; status:" + status + "; oldValue:" + oldValue + "; newValue:" + newValue + "}";
+        return ("\"" + key + "\", \"" + status + "\", \"" + oldValue + "\", \"" + newValue + "\"");
     }
 }

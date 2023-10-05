@@ -43,14 +43,14 @@ public final class App implements Callable<Integer> {
             //System.out.println("File 1: " + filepath1);
             //System.out.println("File 2: " + filepath2);
 
-            String rezStr = "";
-            try {
-                rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format.toLowerCase());
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+        String rezStr = "";
+        try {
+            rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format.toLowerCase());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
-            System.out.println(rezStr);
+        System.out.println(rezStr);
         //}
         return 0;
     }
