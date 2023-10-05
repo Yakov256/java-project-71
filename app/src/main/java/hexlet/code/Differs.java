@@ -1,6 +1,6 @@
 package hexlet.code;
 
-public class Differs {
+public final class Differs {
 
     private String key;
     private DiffersStates status;

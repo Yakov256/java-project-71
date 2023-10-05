@@ -40,7 +40,7 @@ public class DifferTest {
         //{  obj1={nestedKey=value, isNested=true},
         /*String[] value12 =  {"value1", "value2"};
         int[] numbers22334455 = {22, 33, 44, 55};*/
-        int[] numbers456 = {4, 5, 6};
+        final int[] numbers456 = {4, 5, 6};
 
         testTreeMap2.put("chars1", "{'a', 'b', 'c'}");
         testTreeMap2.put("chars2", false);
@@ -75,14 +75,16 @@ public class DifferTest {
     void getLineDifferencesStateTest() {
         int[] numbers1234 = {1, 2, 3, 4};
         int[] numbers2345 = {2, 3, 4, 5};
+        final int int123 = 123;
+        final int int234 = 234;
 
         assertEquals(DiffersStates.notChanged, getLineDifferencesState(null, null));
         assertEquals(DiffersStates.notChanged, getLineDifferencesState(numbers1234, numbers1234));
         assertEquals(DiffersStates.added, getLineDifferencesState(null, "string"));
-        assertEquals(DiffersStates.added, getLineDifferencesState(null, 123));
+        assertEquals(DiffersStates.added, getLineDifferencesState(null, int123));
         assertEquals(DiffersStates.removed, getLineDifferencesState("string", null));
         assertEquals(DiffersStates.updated, getLineDifferencesState("string1", "string2"));
-        assertEquals(DiffersStates.updated, getLineDifferencesState(123, 234));
+        assertEquals(DiffersStates.updated, getLineDifferencesState(int123, int234));
         assertEquals(DiffersStates.updated, getLineDifferencesState(numbers1234, numbers2345));
     }
 
