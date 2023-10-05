@@ -1,5 +1,5 @@
 run-dist:
-	@./app/build/install/app/bin/app
+	@./app/build/install/app/bin/app testfile1.json testfile2.json -f plain
 
 help:
 	@./app/build/install/app/bin/app -h

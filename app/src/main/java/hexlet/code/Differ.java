@@ -88,7 +88,7 @@ public class Differ {
         return Formatter.getFormattedString(treeMapsDifferences, formatName);
     }
 
-    // Для тестов hexlet check
+    // Для тестов hexlet check, без этого метода не проходят
     public static String generate(String filePath1, String filePath2) throws IOException {
         TreeMap<String, Object> treeMap1 = readTreeMapFromFile(filePath1);
         TreeMap<String, Object> treeMap2 = readTreeMapFromFile(filePath2);
