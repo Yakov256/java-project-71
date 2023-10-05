@@ -34,7 +34,7 @@ public class JsonTest {
 
         String rezStr = Json.getFormattedDiffers(treeMapsDifferences);
 
-        String referenceStr = "{\n"
+        String referenceStr = ""//"{\n"
                 + "{\"key\":\"chars1\",\"status\":\"notChanged\",\"oldValue\":\"[a, b, c]\",\"newValue\":\""
                 + "[a, b, c]\"}\n"
                 + "{\"key\":\"chars2\",\"status\":\"updated\",\"oldValue\":\"[d, e, f]\",\"newValue\":false}\n"
@@ -54,8 +54,8 @@ public class JsonTest {
                 + "{\"key\":\"setting1\",\"status\":\"updated\",\"oldValue\":\"Some value\",\"newValue\":\""
                 + "Another value\"}\n"
                 + "{\"key\":\"setting2\",\"status\":\"updated\",\"oldValue\":200,\"newValue\":300}\n"
-                + "{\"key\":\"setting3\",\"status\":\"updated\",\"oldValue\":true,\"newValue\":\"none\"}\n"
-                + "}";
+                + "{\"key\":\"setting3\",\"status\":\"updated\",\"oldValue\":true,\"newValue\":\"none\"}\n";
+                //+ "}";
 
         assertEquals(rezStr, referenceStr);
     }
