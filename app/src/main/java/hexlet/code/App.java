@@ -33,15 +33,9 @@ public final class App implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        /*if (filepath1.toString().equals("") || filepath2.toString().equals("")) {
-            return 0;
-        } else {*/
-            //System.out.println("Working Directory: " + System.getProperty("user.dir"));
-            //filepath1 = new File(System.getProperty("user.dir") + "//" + filepath1.getPath());
-            //filepath2 = new File(System.getProperty("user.dir") + "//" + filepath2.getPath());
-
-            //System.out.println("File 1: " + filepath1);
-            //System.out.println("File 2: " + filepath2);
+        //System.out.println("Working Directory: " + System.getProperty("user.dir"));
+        //filepath1 = new File(System.getProperty("user.dir") + "//" + filepath1.getPath());
+        //System.out.println("File 1: " + filepath1);
 
         String rezStr = "";
         try {
@@ -51,7 +45,7 @@ public final class App implements Callable<Integer> {
         }
 
         System.out.println(rezStr);
-        //}
+
         return 0;
     }
 }
