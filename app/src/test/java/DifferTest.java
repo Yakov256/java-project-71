@@ -15,12 +15,6 @@ public class DifferTest {
         final int id45 = 45;
         final int setting200 = 200;
 
-        /*char[] abc =  {'a', 'b', 'c'};
-        char[] def =  {'d', 'e', 'f'};
-        int[] numbers1234 = {1, 2, 3, 4};
-        int[] numbers2345 = {2, 3, 4, 5};
-        /*int[] numbers345 = {3, 4, 5};*/
-
         //testTreeMap1.put("chars1", abc);
         testTreeMap1.put("chars1", "{'a', 'b', 'c'}");
         //testTreeMap1.put("chars2", def);
@@ -37,9 +31,6 @@ public class DifferTest {
         testTreeMap1.put("setting3", true);
 
         TreeMap<String, Object> testTreeMap2 = new TreeMap<>();
-        //{  obj1={nestedKey=value, isNested=true},
-        /*String[] value12 =  {"value1", "value2"};
-        int[] numbers22334455 = {22, 33, 44, 55};*/
         final int[] numbers456 = {4, 5, 6};
 
         testTreeMap2.put("chars1", "{'a', 'b', 'c'}");
@@ -73,8 +64,8 @@ public class DifferTest {
 
     @Test
     void getLineDifferencesStateTest() {
-        int[] numbers1234 = {1, 2, 3, 4};
-        int[] numbers2345 = {2, 3, 4, 5};
+        final int[] numbers1234 = {1, 2, 3, 4};
+        final int[] numbers2345 = {2, 3, 4, 5};
         final int int123 = 123;
         final int int234 = 234;
 
