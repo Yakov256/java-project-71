@@ -46,4 +46,20 @@ public class Parser {
         return rezTreeMap;
     }
 
+    public static TreeMap<String, Object> getTreeMap(String strFromFile, String filePath) throws IOException {
+        TreeMap<String, Object> rezTreeMap;
+        ObjectMapper mapper = getObjectMapper(filePath);
+
+        rezTreeMap = mapper.readValue(strFromFile, new TypeReference<>() { });
+
+        // "Искуственно" исправляем, проблему когда текстовое "null" распознается как null
+        for (Map.Entry<String, Object> entry : rezTreeMap.entrySet()) {
+            if (entry.getValue() == null) {
+                entry.setValue("null");
+            }
+        }
+
+        return rezTreeMap;
+    }
+
 }
