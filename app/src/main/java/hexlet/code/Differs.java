@@ -7,11 +7,11 @@ public final class Differs {
     private Object oldValue;
     private Object newValue;
 
-    public Differs(String key, DiffersStates status, Object oldValue, Object newValue) {
+    public Differs(String key, DiffersStates status, Object value1, Object value2) {
         this.key = key;
         this.status = status;
-        this.oldValue = oldValue;
-        this.newValue = newValue;
+        this.oldValue = value1;
+        this.newValue = value2;
     }
 
     public String getKey() {
