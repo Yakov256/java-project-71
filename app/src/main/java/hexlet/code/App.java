@@ -14,13 +14,13 @@ import java.util.concurrent.Callable;
 public final class App implements Callable<Integer> {
 
     @Parameters(index = "0", description = "path to first file",
-            //defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file1.json")
-            defaultValue = "")
+            defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file1.json")
+            //defaultValue = "")
     private File filepath1 = new File("");
 
     @Parameters(index = "1", description = "path to second file",
-            //defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file2.json")
-            defaultValue = "")
+            defaultValue = "/home/yakov/IdeaProjects/java-project-71/src/main/resources/file2.json")
+            //defaultValue = "")
     private File filepath2 = new File("");
 
     @Option(names = {"-f", "--format"}, description = "[default: stylish]")
@@ -42,6 +42,7 @@ public final class App implements Callable<Integer> {
             rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format.toLowerCase());
         } catch (IOException e) {
             System.out.println(e.getMessage());
+            return 1;
         }
 
         System.out.println(rezStr);
