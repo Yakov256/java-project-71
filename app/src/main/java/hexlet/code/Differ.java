@@ -51,7 +51,7 @@ public class Differ {
         return treeMapsDifferences;
     }
 
-    private static String readStringFromFile(String filePath) {
+    public static String readStringFromFile(String filePath) {
 
         String strFromFile = "";
         try {
