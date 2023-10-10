@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.LinkedList;
 import java.util.List;
 
+import static hexlet.code.Differ.readStringFromFile;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlainTest {
@@ -37,20 +38,10 @@ public class PlainTest {
 
         String rezStr = Plain.getFormattedDiffers(treeMapsDifferences);
 
-        String referenceStr = "Property 'chars2' was updated. From [complex value] to false\n"
-                + "Property 'checked' was updated. From false to true\n"
-                + "Property 'default' was updated. From null to [complex value]\n"
-                + "Property 'id' was updated. From 45 to null\n"
-                + "Property 'key1' was removed\n"
-                + "Property 'key2' was added with value: 'value2'\n"
-                + "Property 'numbers2' was updated. From [complex value] to [complex value]\n"
-                + "Property 'numbers3' was removed\n"
-                + "Property 'numbers4' was added with value: [complex value]\n"
-                + "Property 'setting1' was updated. From 'Some value' to 'Another value'\n"
-                + "Property 'setting2' was updated. From 200 to 300\n"
-                + "Property 'setting3' was updated. From true to 'none'";
+        String referenceStr = readStringFromFile(System.getProperty("user.dir")
+                + "/src/test/resources/PlainTestReferenceStr.txt");
 
-        assertEquals(rezStr, referenceStr);
+        assertEquals(referenceStr, rezStr);
     }
 
 }

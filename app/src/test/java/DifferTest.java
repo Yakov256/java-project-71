@@ -1,11 +1,12 @@
-
-import hexlet.code.DiffersStates;;
+import hexlet.code.DiffersStates;
 import org.junit.jupiter.api.Test;
+
 import java.util.TreeMap;
 
-import static hexlet.code.Differ.getLineDifferencesState;
-import static hexlet.code.Differ.getTreeMapsDifferencesList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static hexlet.code.Differ.readStringFromFile;
+import static hexlet.code.Differ.getTreeMapsDifferencesList;
+import static hexlet.code.Differ.getLineDifferencesState;
 
 public class DifferTest {
 
@@ -29,7 +30,7 @@ public class DifferTest {
         testTreeMap1.put("setting3", true);
 
         TreeMap<String, Object> testTreeMap2 = new TreeMap<>();
-        final int[] numbers456 = {4, 5, 6};
+        //final int[] numbers456 = {4, 5, 6};
 
         testTreeMap2.put("chars1", "{'a', 'b', 'c'}");
         testTreeMap2.put("chars2", false);
@@ -45,15 +46,8 @@ public class DifferTest {
         testTreeMap2.put("setting2", "300");
         testTreeMap2.put("setting3", "none");
 
-        String referenceStr = "[\"chars1\", \"notChanged\", \"{'a', 'b', 'c'}\", \"{'a', 'b', 'c'}\", "
-                + "\"chars2\", \"updated\", \"{'d', 'e', 'f'}\", \"false\", \"checked\", \"updated\", \"false\", "
-                + "\"true\", \"default\", \"updated\", \"null\", \"{\"value1\", \"value2\"}\", \"id\", \"updated\", "
-                + "\"45\", \"null\", \"key1\", \"removed\", \"value1\", \"null\", \"key2\", \"added\", \"null\", "
-                + "\"value2\", \"numbers1\", \"notChanged\", \"{1, 2, 3, 4}\", \"{1, 2, 3, 4}\", \"numbers2\", "
-                + "\"updated\", \"{2, 3, 4, 5}\", \"{22, 33, 44, 55}\", \"numbers3\", \"removed\", \"{3, 4, 5}\", "
-                + "\"null\", \"numbers4\", \"added\", \"null\", \"{4, 5, 6}\", \"obj1\", \"added\", \"null\", "
-                + "\"{nestedKey=value, isNested=true}\", \"setting1\", \"updated\", \"Some value\", \"Another value\""
-                + ", \"setting2\", \"updated\", \"200\", \"300\", \"setting3\", \"updated\", \"true\", \"none\"]";
+        String referenceStr = readStringFromFile(System.getProperty("user.dir")
+                + "/src/test/resources/DifferTestReferenceStr.txt");
 
         String rezStr = getTreeMapsDifferencesList(testTreeMap1, testTreeMap2).toString();
         assertEquals(referenceStr, rezStr);

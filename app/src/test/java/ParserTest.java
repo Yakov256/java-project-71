@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Map;
 
+import static hexlet.code.Differ.readStringFromFile;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParserTest {
@@ -18,11 +19,10 @@ public class ParserTest {
 
         Map<String, Object> readTreeMapFromYAML =
                 Parser.getTreeMap(Differ.readStringFromFile(System.getProperty("user.dir")
-                        + "/src/test/resources/file1.json"), "/src/test/resources/file2.json");
+                        + "/src/test/resources/file1.yml"), "/src/test/resources/file1.yml");
 
-        String referenceStr = "{chars1=[a, b, c], chars2=[d, e, f], checked=false, default=null, id=45, key1=value1, "
-                + "numbers1=[1, 2, 3, 4], numbers2=[2, 3, 4, 5], numbers3=[3, 4, 5], setting1=Some "
-                + "value, setting2=200, setting3=true}";
+        String referenceStr = readStringFromFile(System.getProperty("user.dir")
+                + "/src/test/resources/ParserTestReferenceStr.txt");
 
         assertEquals(readTreeMapFromJSON.toString(), referenceStr);
         assertEquals(readTreeMapFromYAML.toString(), referenceStr);
