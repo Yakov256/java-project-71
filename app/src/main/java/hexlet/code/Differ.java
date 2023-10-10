@@ -33,11 +33,62 @@ public class Differ {
         Object map1Value;
         Object map2Value;
 
+        /*
         TreeMap<String, Object> keysFromBothFile = new TreeMap<>();
         keysFromBothFile.putAll(treeMap1);
         keysFromBothFile.putAll(treeMap2);
+        */
+
+        TreeMap<String, Object> keysFromBothFile = new TreeMap<>();
+        for (Map.Entry<String, Object> entry : treeMap1.entrySet()) {
+            if (entry.getValue() == null) {
+                keysFromBothFile.put(entry.getKey(), "null");
+                treeMap1.put(entry.getKey(), "null");
+            } else {
+                keysFromBothFile.put(entry.getKey(), entry.getValue());
+            }
+            //System.out.println("treeMap1: " + entry.getKey() + " - " + entry.getValue());
+        }
+
+        for (Map.Entry<String, Object> entry : treeMap2.entrySet()) {
+            if (entry.getValue() == null) {
+                keysFromBothFile.put(entry.getKey(), "null");
+                treeMap2.put(entry.getKey(), "null");
+            } else {
+                keysFromBothFile.put(entry.getKey(), entry.getValue());
+            }
+            //System.out.println("treeMap2: " + entry.getKey() + " - " + entry.getValue());
+        }
+
 
         for (Map.Entry<String, Object> entry : keysFromBothFile.entrySet()) {
+
+
+//////
+            //System.out.println("" + entry.getKey() + ";" + treeMap2.containsKey(entry.getKey()) + ";" + treeMap2.get(entry.getKey()));
+
+            //map1Value = null;
+            //map2Value = null;
+/*
+            if (treeMap1.containsKey(entry.getKey())) {
+                if (treeMap1.get(entry.getKey()) == null ) {
+                    map1Value = "nullnull";
+                } else {
+                    map1Value = treeMap1.get(entry.getKey());
+                }
+            }
+
+            if (treeMap2.containsKey(entry.getKey())) {
+                if (treeMap2.get(entry.getKey()) == null ) {
+                    map2Value = "nullnull";
+                } else {
+                    map2Value = treeMap1.get(entry.getKey());
+                }
+            }
+
+ */
+            //System.out.println(entry.getKey() + ";" + map2Value);
+//////
 
             map1Value = treeMap1.get(entry.getKey());
             map2Value = treeMap2.get(entry.getKey());

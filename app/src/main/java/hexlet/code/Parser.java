@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.TreeMap;
 
 public class Parser {
@@ -28,11 +27,12 @@ public class Parser {
         rezTreeMap = mapper.readValue(strFromFile, new TypeReference<>() { });
 
         // "Искуственно" исправляем, проблему когда текстовое "null" распознается как null
-        for (Map.Entry<String, Object> entry : rezTreeMap.entrySet()) {
+
+        /*for (Map.Entry<String, Object> entry : rezTreeMap.entrySet()) {
             if (entry.getValue() == null) {
                 entry.setValue("null");
             }
-        }
+        }*/
 
         return rezTreeMap;
     }
