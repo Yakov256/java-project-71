@@ -61,7 +61,7 @@ public class Differ {
         }
 
 
-        System.out.println("-------------------------------------------------------------------------");
+        //System.out.println("-------------------------------------------------------------------------");
 
         for (Map.Entry<String, Object> entry : keysFromBothFile.entrySet()) {
 
