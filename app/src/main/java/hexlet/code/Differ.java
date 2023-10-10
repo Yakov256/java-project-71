@@ -27,12 +27,8 @@ public class Differ {
         return DiffersStates.notChanged; // Нет изменений
     }
 
-    public static List<Differs> getTreeMapsDifferencesList(Map<String, Object> treeMap1,
+    private static Map<String, Object> getkeysFromBothFile(Map<String, Object> treeMap1,
                                                            Map<String, Object> treeMap2) {
-        List<Differs> treeMapsDifferences = new LinkedList<>();
-        Object map1Value;
-        Object map2Value;
-
         Map<String, Object> keysFromBothFile = new TreeMap<>();
         for (Map.Entry<String, Object> entry : treeMap1.entrySet()) {
             if (entry.getValue() == null) {
@@ -51,6 +47,36 @@ public class Differ {
                 keysFromBothFile.put(entry.getKey(), entry.getValue());
             }
         }
+        return keysFromBothFile;
+    }
+
+    public static List<Differs> getTreeMapsDifferencesList(Map<String, Object> treeMap1,
+                                                           Map<String, Object> treeMap2) {
+        List<Differs> treeMapsDifferences = new LinkedList<>();
+        Object map1Value;
+        Object map2Value;
+
+        Map<String, Object> keysFromBothFile = getkeysFromBothFile(treeMap1, treeMap2);
+        /* refactoring for codeclimate
+        Map<String, Object> keysFromBothFile = new TreeMap<>();
+        for (Map.Entry<String, Object> entry : treeMap1.entrySet()) {
+            if (entry.getValue() == null) {
+                keysFromBothFile.put(entry.getKey(), "null");
+                treeMap1.put(entry.getKey(), "null");
+            } else {
+                keysFromBothFile.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        for (Map.Entry<String, Object> entry : treeMap2.entrySet()) {
+            if (entry.getValue() == null) {
+                keysFromBothFile.put(entry.getKey(), "null");
+                treeMap2.put(entry.getKey(), "null");
+            } else {
+                keysFromBothFile.put(entry.getKey(), entry.getValue());
+            }
+        }
+        */
 
         for (Map.Entry<String, Object> entry : keysFromBothFile.entrySet()) {
             map1Value = treeMap1.get(entry.getKey());
