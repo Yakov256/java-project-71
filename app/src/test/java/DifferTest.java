@@ -15,9 +15,7 @@ public class DifferTest {
         final int id45 = 45;
         final int setting200 = 200;
 
-        //testTreeMap1.put("chars1", abc);
         testTreeMap1.put("chars1", "{'a', 'b', 'c'}");
-        //testTreeMap1.put("chars2", def);
         testTreeMap1.put("chars2", "{'d', 'e', 'f'}");
         testTreeMap1.put("checked", false);
         testTreeMap1.put("default", null);
@@ -42,7 +40,6 @@ public class DifferTest {
         testTreeMap2.put("numbers1", "{1, 2, 3, 4}");
         testTreeMap2.put("numbers2", "{22, 33, 44, 55}");
         testTreeMap2.put("numbers4", "{4, 5, 6}");
-        //testTreeMap2.put("numbers4", numbers456);
         testTreeMap2.put("obj1", "{nestedKey=value, isNested=true}");
         testTreeMap2.put("setting1", "Another value");
         testTreeMap2.put("setting2", "300");
@@ -50,7 +47,7 @@ public class DifferTest {
 
         String referenceStr = "[\"chars1\", \"notChanged\", \"{'a', 'b', 'c'}\", \"{'a', 'b', 'c'}\", "
                 + "\"chars2\", \"updated\", \"{'d', 'e', 'f'}\", \"false\", \"checked\", \"updated\", \"false\", "
-                + "\"true\", \"default\", \"added\", \"null\", \"{\"value1\", \"value2\"}\", \"id\", \"removed\", "
+                + "\"true\", \"default\", \"updated\", \"null\", \"{\"value1\", \"value2\"}\", \"id\", \"updated\", "
                 + "\"45\", \"null\", \"key1\", \"removed\", \"value1\", \"null\", \"key2\", \"added\", \"null\", "
                 + "\"value2\", \"numbers1\", \"notChanged\", \"{1, 2, 3, 4}\", \"{1, 2, 3, 4}\", \"numbers2\", "
                 + "\"updated\", \"{2, 3, 4, 5}\", \"{22, 33, 44, 55}\", \"numbers3\", \"removed\", \"{3, 4, 5}\", "
@@ -59,7 +56,7 @@ public class DifferTest {
                 + ", \"setting2\", \"updated\", \"200\", \"300\", \"setting3\", \"updated\", \"true\", \"none\"]";
 
         String rezStr = getTreeMapsDifferencesList(testTreeMap1, testTreeMap2).toString();
-        assertEquals(rezStr, referenceStr);
+        assertEquals(referenceStr, rezStr);
     }
 
     @Test

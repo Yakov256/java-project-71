@@ -61,11 +61,14 @@ public class Differ {
         }
 
 
+        System.out.println("-------------------------------------------------------------------------");
+
         for (Map.Entry<String, Object> entry : keysFromBothFile.entrySet()) {
 
 
 //////
-            //System.out.println("" + entry.getKey() + ";" + treeMap2.containsKey(entry.getKey()) + ";" + treeMap2.get(entry.getKey()));
+            //System.out.println("" + entry.getKey() + ";" + treeMap2.containsKey(entry.getKey())
+            // + ";" + treeMap2.get(entry.getKey()));
 
             //map1Value = null;
             //map2Value = null;
@@ -92,6 +95,9 @@ public class Differ {
 
             map1Value = treeMap1.get(entry.getKey());
             map2Value = treeMap2.get(entry.getKey());
+            //System.out.println("" + entry.getKey() + ";tree1;" + treeMap1.get(entry.getKey()) + ";tree2;"
+//                            + treeMap2.get(entry.getKey()) + ";"
+//                            + getLineDifferencesState(map1Value, map2Value));
 
             Differs differs = new Differs(entry.getKey(), getLineDifferencesState(map1Value, map2Value),
                     map1Value, map2Value);
