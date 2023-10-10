@@ -3,7 +3,7 @@ import hexlet.code.Parser;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.TreeMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,11 +12,11 @@ public class ParserTest {
     @Test
     void readTreeMapFromFileTest() throws IOException {
 
-        TreeMap<String, Object> readTreeMapFromJSON =
+        Map<String, Object> readTreeMapFromJSON =
                 Parser.getTreeMap(Differ.readStringFromFile(System.getProperty("user.dir")
                                 + "/src/test/resources/file1.json"), "/src/test/resources/file1.json");
 
-        TreeMap<String, Object> readTreeMapFromYAML =
+        Map<String, Object> readTreeMapFromYAML =
                 Parser.getTreeMap(Differ.readStringFromFile(System.getProperty("user.dir")
                         + "/src/test/resources/file1.json"), "/src/test/resources/file2.json");
 
