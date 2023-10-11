@@ -2,7 +2,6 @@ package hexlet.code;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
-import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 import java.io.File;
@@ -23,7 +22,7 @@ public final class App implements Callable<Integer> {
             //defaultValue = "")
     private File filepath2 = new File("");
 
-    @Option(names = {"-f", "--format"}, description = "[default: stylish]")
+    @CommandLine.Option(names = {"-f", "--format"}, description = "[default: stylish]")
     private String format = "stylish";
 
     public static void main(String... args) {

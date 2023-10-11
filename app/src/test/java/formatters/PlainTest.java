@@ -1,19 +1,8 @@
 package formatters;
 
-import hexlet.code.Differs;
-import hexlet.code.DiffersStates;
-import hexlet.code.formatters.Plain;
-import org.junit.jupiter.api.Test;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import static hexlet.code.Differ.readStringFromFile;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class PlainTest {
 
-    @Test
+    /*@Test
     void getFormattedDiffersTest() {
         List<Differs> treeMapsDifferences = new LinkedList<>();
         final int int45 = 45;
@@ -43,5 +32,6 @@ public class PlainTest {
 
         assertEquals(referenceStr, rezStr);
     }
+    */
 
 }

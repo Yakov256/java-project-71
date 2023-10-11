@@ -1,8 +1,9 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Differs;
 import hexlet.code.DiffersStates;
+
 import java.util.List;
+import java.util.Map;
 
 public class Plain {
 
@@ -26,7 +27,41 @@ public class Plain {
         return getPlainFormattedString(value);
     }
 
-    public static String getFormattedDiffers(List<Differs> diffs) {
+
+    public static String getFormattedDiffers(List<Map<String, Object>> diffs) {
+        StringBuilder rezStr = new StringBuilder();
+        boolean strAdded = false;
+
+        for (Map diff: diffs) {
+            if (strAdded) {
+                rezStr.append("\n");
+                strAdded = false;
+            }
+/*
+            diffmap.put("key", entry.getKey());
+            diffmap.put("Difference", getLineDifferencesState(map1Value, map2Value));
+            diffmap.put("file1Value", map1Value);
+            diffmap.put("file2Value", map2Value);
+*/
+            if (diff.get("Difference") == DiffersStates.removed) {
+                rezStr.append("Property '" + diff.get("key") + "' was removed");
+                strAdded = true;
+            } else if (diff.get("Difference") == DiffersStates.updated) {
+                rezStr.append("Property '" + diff.get("key") + "' was updated. From "
+                        + getStringOrComplexValue(diff.get("file1Value"))
+                        + " to " + getStringOrComplexValue(diff.get("file2Value")));
+                strAdded = true;
+            } else if (diff.get("Difference") == DiffersStates.added) {
+                rezStr.append("Property '" + diff.get("key") + "' was added with value: "
+                        + getStringOrComplexValue(diff.get("file2Value")));
+                strAdded = true;
+            }
+        }
+
+        return rezStr.toString();
+    }
+
+    /*public static String getFormattedDiffers(List<Differs> diffs) {
         StringBuilder rezStr = new StringBuilder();
         boolean strAdded = false;
 
@@ -53,5 +88,7 @@ public class Plain {
 
         return rezStr.toString();
     }
+
+     */
 
 }

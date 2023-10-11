@@ -1,7 +1,8 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Differs;
 import java.util.List;
+import java.util.Map;
+
 
 public class Stylish {
 
@@ -13,7 +14,30 @@ public class Stylish {
         }
     }
 
-    public static String getFormattedDiffers(List<Differs> diffs) {
+    public static String getFormattedDiffers(List<Map<String, Object>> diffs) {
+        StringBuilder rezStr = new StringBuilder("{\n");
+
+        for (Map diff: diffs) {
+
+            switch (diff.get("Difference").toString()) {
+                case "removed" -> rezStr.append("  - " + diff.get("key") + ": "
+                        + toStringExceptNull(diff.get("file1Value")) + "\n");
+                case "notChanged" -> rezStr.append("    " + diff.get("key") + ": "
+                        + toStringExceptNull(diff.get("file1Value")) + "\n");
+                case "updated"  -> {
+                    rezStr.append("  - " + diff.get("key") + ": " + toStringExceptNull(diff.get("file1Value")) + "\n");
+                    rezStr.append("  + " + diff.get("key") + ": " + toStringExceptNull(diff.get("file2Value")) + "\n");
+                }
+                default  -> rezStr.append("  + " + diff.get("key") + ": " + toStringExceptNull(diff.get("file2Value"))
+                        + "\n");
+            }
+        }
+
+        rezStr.append("}");
+        return rezStr.toString();
+    }
+
+    /*public static String getFormattedDiffers(List<Differs> diffs) {
         StringBuilder rezStr = new StringBuilder("{\n");
 
         for (Differs diff: diffs) {
@@ -35,4 +59,5 @@ public class Stylish {
         rezStr.append("}");
         return rezStr.toString();
     }
+    */
 }
