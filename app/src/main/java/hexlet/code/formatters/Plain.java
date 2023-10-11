@@ -37,12 +37,7 @@ public class Plain {
                 rezStr.append("\n");
                 strAdded = false;
             }
-/*
-            diffmap.put("key", entry.getKey());
-            diffmap.put("Difference", getLineDifferencesState(map1Value, map2Value));
-            diffmap.put("file1Value", map1Value);
-            diffmap.put("file2Value", map2Value);
-*/
+
             if (diff.get("Difference") == DiffersStates.removed) {
                 rezStr.append("Property '" + diff.get("key") + "' was removed");
                 strAdded = true;
@@ -60,35 +55,5 @@ public class Plain {
 
         return rezStr.toString();
     }
-
-    /*public static String getFormattedDiffers(List<Differs> diffs) {
-        StringBuilder rezStr = new StringBuilder();
-        boolean strAdded = false;
-
-        for (Differs diff: diffs) {
-            if (strAdded) {
-                rezStr.append("\n");
-                strAdded = false;
-            }
-
-            if (diff.getStatus() == DiffersStates.removed) {
-                rezStr.append("Property '" + diff.getKey() + "' was removed");
-                strAdded = true;
-            } else if (diff.getStatus() == DiffersStates.updated) {
-                rezStr.append("Property '" + diff.getKey() + "' was updated. From "
-                        + getStringOrComplexValue(diff.getOldValue())
-                        + " to " + getStringOrComplexValue(diff.getNewValue()));
-                strAdded = true;
-            } else if (diff.getStatus() == DiffersStates.added) {
-                rezStr.append("Property '" + diff.getKey() + "' was added with value: "
-                        + getStringOrComplexValue(diff.getNewValue()));
-                strAdded = true;
-            }
-        }
-
-        return rezStr.toString();
-    }
-
-     */
 
 }

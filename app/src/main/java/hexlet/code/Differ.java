@@ -28,32 +28,29 @@ public class Differ {
         return DiffersStates.notChanged; // Нет изменений
     }
 
+    private static void addKeysFromMapAndFixNull(Map<String, Object> mapForAdding, Map<String, Object> map1) {
+        for (Map.Entry<String, Object> entry : map1.entrySet()) {
+            if (entry.getValue() == null) {
+                mapForAdding.put(entry.getKey(), "null");
+                map1.put(entry.getKey(), "null");
+            } else {
+                mapForAdding.put(entry.getKey(), entry.getValue());
+            }
+        }
+    }
+
     private static Map<String, Object> getkeysFromBothFile(Map<String, Object> treeMap1,
                                                            Map<String, Object> treeMap2) {
         Map<String, Object> keysFromBothFile = new TreeMap<>();
-        for (Map.Entry<String, Object> entry : treeMap1.entrySet()) {
-            if (entry.getValue() == null) {
-                keysFromBothFile.put(entry.getKey(), "null");
-                treeMap1.put(entry.getKey(), "null");
-            } else {
-                keysFromBothFile.put(entry.getKey(), entry.getValue());
-            }
-        }
 
-        for (Map.Entry<String, Object> entry : treeMap2.entrySet()) {
-            if (entry.getValue() == null) {
-                keysFromBothFile.put(entry.getKey(), "null");
-                treeMap2.put(entry.getKey(), "null");
-            } else {
-                keysFromBothFile.put(entry.getKey(), entry.getValue());
-            }
-        }
+        addKeysFromMapAndFixNull(keysFromBothFile, treeMap1);
+        addKeysFromMapAndFixNull(keysFromBothFile, treeMap2);
+
         return keysFromBothFile;
     }
 
     public static List<Map<String, Object>> getTreeMapsDifferencesList(Map<String, Object> treeMap1,
                                                            Map<String, Object> treeMap2) {
-        List<Differs> treeMapsDifferences = new LinkedList<>();
         Object map1Value;
         Object map2Value;
 
@@ -65,47 +62,16 @@ public class Differ {
             map1Value = treeMap1.get(entry.getKey());
             map2Value = treeMap2.get(entry.getKey());
 
-
-
             Map<String, Object> diffmap = new LinkedHashMap<>();
-
-            //Differs differs = new Differs(entry.getKey(), getLineDifferencesState(map1Value, map2Value),
-            //        map1Value, map2Value);
-            //treeMapsDifferences.add(differs);
-
             diffmap.put("key", entry.getKey());
             diffmap.put("Difference", getLineDifferencesState(map1Value, map2Value));
             diffmap.put("file1Value", map1Value);
             diffmap.put("file2Value", map2Value);
-
             diffList.add(diffmap);
         }
 
         return diffList;
     }
-
-    /*
-    public static List<Differs> getTreeMapsDifferencesList(Map<String, Object> treeMap1,
-                                                           Map<String, Object> treeMap2) {
-        List<Differs> treeMapsDifferences = new LinkedList<>();
-        Object map1Value;
-        Object map2Value;
-
-        Map<String, Object> keysFromBothFile = getkeysFromBothFile(treeMap1, treeMap2);
-
-        for (Map.Entry<String, Object> entry : keysFromBothFile.entrySet()) {
-            map1Value = treeMap1.get(entry.getKey());
-            map2Value = treeMap2.get(entry.getKey());
-
-            Differs differs = new Differs(entry.getKey(), getLineDifferencesState(map1Value, map2Value),
-                    map1Value, map2Value);
-            treeMapsDifferences.add(differs);
-        }
-
-        return treeMapsDifferences;
-    }
-
- */
 
     public static String readStringFromFile(String filePath) {
 
@@ -124,7 +90,6 @@ public class Differ {
         Map<String, Object> treeMap1 = getTreeMap(readStringFromFile(filePath1), filePath1);
         Map<String, Object> treeMap2 = getTreeMap(readStringFromFile(filePath2), filePath2);
 
-        //List<Differs> treeMapsDifferences = getTreeMapsDifferencesList(treeMap1, treeMap2);
         List<Map<String, Object>> treeMapsDifferences = getTreeMapsDifferencesList(treeMap1, treeMap2);
         return Formatter.getFormattedString(treeMapsDifferences, formatName);
     }
@@ -134,8 +99,6 @@ public class Differ {
         Map<String, Object> treeMap1 = getTreeMap(readStringFromFile(filePath1), filePath1);
         Map<String, Object> treeMap2 = getTreeMap(readStringFromFile(filePath2), filePath2);
 
-
-        //List<Differs> treeMapsDifferences = getTreeMapsDifferencesList(treeMap1, treeMap2);
         List<Map<String, Object>> listMapsDifferences = getTreeMapsDifferencesList(treeMap1, treeMap2);
         return Formatter.getFormattedString(listMapsDifferences, "stylish");
     }

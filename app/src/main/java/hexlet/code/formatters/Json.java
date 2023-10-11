@@ -25,21 +25,5 @@ public class Json {
 
         return rezStr.toString();
     }
-    /*public static String getFormattedDiffers(List<Differs> diffs) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        StringBuilder rezStr = new StringBuilder();
-
-        for (Differs diff: diffs) {
-            try {
-                rezStr.append(objectMapper.writeValueAsString(diff));
-            } catch (JsonProcessingException e) {
-                System.out.println("Failed to generate json!");
-                System.out.println(e.getMessage());
-            }
-            rezStr.append("\n");
-        }
-
-        return rezStr.toString();
-    }*/
 
 }
