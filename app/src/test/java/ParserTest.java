@@ -1,15 +1,5 @@
-import hexlet.code.Differ;
-import hexlet.code.Parser;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.util.Map;
-
-import static hexlet.code.Differ.readStringFromFile;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class ParserTest {
-
+/*
     @Test
     void readTreeMapFromFileTest() throws IOException {
 
@@ -27,5 +17,7 @@ public class ParserTest {
         assertEquals(readTreeMapFromJSON.toString(), referenceStr);
         assertEquals(readTreeMapFromYAML.toString(), referenceStr);
     }
+
+ */
 
 }

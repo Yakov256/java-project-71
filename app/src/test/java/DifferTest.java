@@ -7,11 +7,11 @@ import java.io.IOException;
 import static hexlet.code.Differ.getLineDifferencesState;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DifferTest {
-
-    /*@Test
+public final class DifferTest {
+/*
+    @Test
     void getTreeMapsDifferencesListTest() {
-        TreeMap<String, Object> testTreeMap1 = new TreeMap<>();
+        Map<String, Object> testTreeMap1 = new TreeMap<>();
         final int id45 = 45;
         final int setting200 = 200;
 
@@ -29,8 +29,6 @@ public class DifferTest {
         testTreeMap1.put("setting3", true);
 
         TreeMap<String, Object> testTreeMap2 = new TreeMap<>();
-        //final int[] numbers456 = {4, 5, 6};
-
         testTreeMap2.put("chars1", "{'a', 'b', 'c'}");
         testTreeMap2.put("chars2", false);
         testTreeMap2.put("checked", true);
@@ -45,7 +43,7 @@ public class DifferTest {
         testTreeMap2.put("setting2", "300");
         testTreeMap2.put("setting3", "none");
 
-        String referenceStr = readStringFromFile(System.getProperty("user.dir")
+        String referenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
                 + "/src/test/resources/DifferTestReferenceStr.txt");
 
         String rezStr = getTreeMapsDifferencesList(testTreeMap1, testTreeMap2).toString();
