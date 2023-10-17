@@ -10,20 +10,20 @@ import java.util.TreeMap;
 
 public class Parser {
 
-    private static ObjectMapper getObjectMapper(String filePath) {
+    private static ObjectMapper getObjectMapper(String formatName) {
         ObjectMapper mapper = null;
-        if (filePath.endsWith("json")) {
+        if (formatName.endsWith("json")) {
             mapper = new ObjectMapper();
-        } else if (filePath.endsWith("yml") || filePath.endsWith("yaml")) {
+        } else if (formatName.endsWith("yml") || formatName.endsWith("yaml")) {
             mapper = new YAMLMapper();
         }
 
         return mapper;
     }
 
-    public static Map<String, Object> getTreeMap(String strFromFile, String filePath) throws IOException {
+    public static Map<String, Object> getTreeMap(String strFromFile, String formatName) throws IOException {
         TreeMap<String, Object> rezTreeMap;
-        ObjectMapper mapper = getObjectMapper(filePath);
+        ObjectMapper mapper = getObjectMapper(formatName);
         rezTreeMap = mapper.readValue(strFromFile, new TypeReference<>() { });
 
         return rezTreeMap;
