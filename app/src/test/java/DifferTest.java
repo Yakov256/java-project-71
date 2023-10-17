@@ -1,4 +1,5 @@
 import hexlet.code.Differ;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -6,6 +7,22 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class DifferTest {
+
+    static String stylishFormatReferenceStr;
+    static String plainFormatReferenceStr;
+    static String jsonFormatReferenceStr;
+
+    @BeforeAll
+    static void loadAllReferenceStrings() {
+        stylishFormatReferenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
+                + "/src/test/resources/StylishFormatReferenceStr.txt");
+
+        plainFormatReferenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
+                + "/src/test/resources/PlainFormatReferenceStr.txt");
+
+        jsonFormatReferenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
+                + "/src/test/resources/JsonFormatReferenceStr.txt");
+    }
 
     String getTestStr(String filename1, String filename2, String format) {
         String filepath1 = System.getProperty("user.dir") + "/src/test/resources/" + filename1;
@@ -24,49 +41,37 @@ public final class DifferTest {
     @Test
     void jsonToStylishFormatTest() {
         String rezStr = getTestStr("file1.json", "file2.json", "stylish");
-        String referenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
-                + "/src/test/resources/StylishFormatReferenceStr.txt");
-        assertEquals(referenceStr, rezStr);
+        assertEquals(stylishFormatReferenceStr, rezStr);
     }
 
     @Test
     void ymlToStylishFormatTest() {
         String rezStr = getTestStr("file1.yml", "file2.yml", "stylish");
-        String referenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
-                + "/src/test/resources/StylishFormatReferenceStr.txt");
-        assertEquals(referenceStr, rezStr);
+        assertEquals(stylishFormatReferenceStr, rezStr);
     }
 
     @Test
     void jsonToPlainFormatTest() {
         String rezStr = getTestStr("file1.json", "file2.json", "plain");
-        String referenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
-                + "/src/test/resources/PlainFormatReferenceStr.txt");
-        assertEquals(referenceStr, rezStr);
+        assertEquals(plainFormatReferenceStr, rezStr);
     }
 
     @Test
     void ymlToPlainFormatTest() {
         String rezStr = getTestStr("file1.yml", "file2.yml", "plain");
-        String referenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
-                + "/src/test/resources/PlainFormatReferenceStr.txt");
-        assertEquals(referenceStr, rezStr);
+        assertEquals(plainFormatReferenceStr, rezStr);
     }
 
     @Test
     void jsonToJsonFormatTest() {
         String rezStr = getTestStr("file1.json", "file2.json", "json");
-        String referenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
-                + "/src/test/resources/JsonFormatReferenceStr.txt");
-        assertEquals(referenceStr, rezStr);
+        assertEquals(jsonFormatReferenceStr, rezStr);
     }
 
     @Test
     void ymlToJsonFormatTest() {
         String rezStr = getTestStr("file1.yml", "file2.yml", "json");
-        String referenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
-                + "/src/test/resources/JsonFormatReferenceStr.txt");
-        assertEquals(referenceStr, rezStr);
+        assertEquals(jsonFormatReferenceStr, rezStr);
     }
 
 }
