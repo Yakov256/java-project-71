@@ -1,16 +1,14 @@
 import hexlet.code.Differ;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class DifferTest {
 
-    static String stylishFormatReferenceStr;
-    static String plainFormatReferenceStr;
-    static String jsonFormatReferenceStr;
+    private static String stylishFormatReferenceStr;
+    private static String plainFormatReferenceStr;
+    private static String jsonFormatReferenceStr;
 
     @BeforeAll
     static void loadAllReferenceStrings() {
