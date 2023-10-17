@@ -27,32 +27,28 @@ public class Plain {
         return getPlainFormattedString(value);
     }
 
-
     public static String getFormattedDiffers(List<Map<String, Object>> diffs) {
         StringBuilder rezStr = new StringBuilder();
-        boolean strAdded = false;
 
-        for (Map diff: diffs) {
-            if (strAdded) {
-                rezStr.append("\n");
-                strAdded = false;
-            }
-
+        for (Map diff : diffs) {
             if (diff.get("Difference") == DiffersStates.removed) {
                 rezStr.append("Property '" + diff.get("key") + "' was removed");
-                strAdded = true;
+                rezStr.append("\n");
             } else if (diff.get("Difference") == DiffersStates.updated) {
                 rezStr.append("Property '" + diff.get("key") + "' was updated. From "
                         + getStringOrComplexValue(diff.get("file1Value"))
                         + " to " + getStringOrComplexValue(diff.get("file2Value")));
-                strAdded = true;
+                rezStr.append("\n");
             } else if (diff.get("Difference") == DiffersStates.added) {
                 rezStr.append("Property '" + diff.get("key") + "' was added with value: "
                         + getStringOrComplexValue(diff.get("file2Value")));
-                strAdded = true;
+                rezStr.append("\n");
             }
         }
 
+        if (rezStr.length() > 0) {
+            rezStr.setLength(rezStr.length() - 1);
+        }
         return rezStr.toString();
     }
 
