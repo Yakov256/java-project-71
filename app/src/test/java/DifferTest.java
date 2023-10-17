@@ -1,3 +1,6 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hexlet.code.Differ;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -28,7 +31,7 @@ public final class DifferTest {
 
         String testStr = "";
         try {
-            testStr = Differ.generate(filepath1.toString(), filepath2.toString(), format);
+            testStr = Differ.generate(filepath1, filepath2, format);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -61,15 +64,21 @@ public final class DifferTest {
     }
 
     @Test
-    void jsonToJsonFormatTest() {
+    void jsonToJsonFormatTest() throws JsonProcessingException {
         String rezStr = getTestStr("file1.json", "file2.json", "json");
-        assertEquals(jsonFormatReferenceStr, rezStr);
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode tree1 = mapper.readTree(jsonFormatReferenceStr);
+        JsonNode tree2 = mapper.readTree(rezStr);
+        assertEquals(tree1, tree2);
     }
 
     @Test
-    void ymlToJsonFormatTest() {
+    void ymlToJsonFormatTest() throws JsonProcessingException {
         String rezStr = getTestStr("file1.yml", "file2.yml", "json");
-        assertEquals(jsonFormatReferenceStr, rezStr);
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode tree1 = mapper.readTree(jsonFormatReferenceStr);
+        JsonNode tree2 = mapper.readTree(rezStr);
+        assertEquals(tree1, tree2);
     }
 
 }
