@@ -1,15 +1,14 @@
 package hexlet.code;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
 import static hexlet.code.Parser.getTreeMap;
+import static hexlet.code.Utils.readStringFromFile;
 
 public class Differ {
-
+/* Вынес в отдельный класс Utils
     public static String readStringFromFile(String filePath) {
 
         String strFromFile = "";
@@ -21,7 +20,7 @@ public class Differ {
         }
 
         return strFromFile;
-    }
+    }*/
 
     private static String getFormatName(String filePath) {
         String formatName = "";

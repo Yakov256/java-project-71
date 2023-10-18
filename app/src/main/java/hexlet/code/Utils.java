@@ -1,10 +1,13 @@
 package hexlet.code;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Map;
-import java.util.TreeMap;
-import java.util.List;
 import java.util.LinkedHashMap;
+import java.util.TreeMap;
 import java.util.LinkedList;
+import java.util.List;
 
 /*
 >>
@@ -16,6 +19,29 @@ https://github.com/Yakov256/java-project-71/blob/86ed99ab612eb69d10fb58150b4dc67
 */
 
 public class Utils {
+
+    public static String readStringFromFile(String fileNameOrFullPath) {
+        String filePath;
+        if (fileNameOrFullPath.contains("/")) {
+            filePath = fileNameOrFullPath;
+        } else {
+            filePath = System.getProperty("user.dir") + "/src/main/resources/" + fileNameOrFullPath;
+
+            if (!Files.exists(Paths.get(filePath))) {
+                filePath = System.getProperty("user.dir") + "/src/test/resources/" + fileNameOrFullPath;
+            }
+        }
+
+        String strFromFile = "";
+        try {
+            strFromFile = new String(Files.readAllBytes(Paths.get(filePath)));
+        } catch (IOException e) {
+            System.out.println("Could not read file: " + filePath);
+            System.out.println(e.getMessage());
+        }
+
+        return strFromFile;
+    }
 
     private static void addKeysFromMapAndFixNull(Map<String, Object> mapForAdding, Map<String, Object> map) {
         for (Map.Entry<String, Object> entry : map.entrySet()) {
