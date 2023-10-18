@@ -25,7 +25,6 @@ public class Parser {
         TreeMap<String, Object> rezTreeMap;
         ObjectMapper mapper = getObjectMapper(formatName);
         rezTreeMap = mapper.readValue(strFromFile, new TypeReference<>() { });
-
         return rezTreeMap;
     }
 

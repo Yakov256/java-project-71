@@ -42,17 +42,22 @@ public class Utils {
 
         return strFromFile;
     }
+    /*
 
     private static void addKeysFromMapAndFixNull(Map<String, Object> mapForAdding, Map<String, Object> map) {
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-            if (entry.getValue() == null) {
+
+            //
+            mapForAdding.put(entry.getKey(), entry.getValue());
+            /*if (entry.getValue() == null) {
                 mapForAdding.put(entry.getKey(), "null");
                 map.put(entry.getKey(), "null");
             } else {
                 mapForAdding.put(entry.getKey(), entry.getValue());
-            }
-        }
+            }*/
+   /*     }
     }
+    */
 
     public static DiffersStates getLineDifferencesState(Object map1Value, Object map2Value) {
 
@@ -74,10 +79,30 @@ public class Utils {
         Object map1Value;
         Object map2Value;
 
-        Map<String, Object> keysFromBothFile = new TreeMap<>();
-        addKeysFromMapAndFixNull(keysFromBothFile, treeMap1);
-        addKeysFromMapAndFixNull(keysFromBothFile, treeMap2);
+////////
+        //addKeysFromMapAndFixNull(keysFromBothFile, treeMap1);
+        //addKeysFromMapAndFixNull(keysFromBothFile, treeMap2);
+///////
+        // Обработка неправильно распозного "null"
+        for (Map.Entry<String, Object> entry : treeMap1.entrySet()) {
+            if (entry.getValue() == null) {
+                treeMap1.put(entry.getKey(), "null");
+            }
+        }
+        for (Map.Entry<String, Object> entry : treeMap2.entrySet()) {
+            if (entry.getValue() == null) {
+                treeMap2.put(entry.getKey(), "null");
+            }
+        }
 
+        Map<String, Object> keysFromBothFile = new TreeMap<>();
+        for (Map.Entry<String, Object> entry : treeMap1.entrySet()) {
+            keysFromBothFile.put(entry.getKey(), entry.getValue());
+        }
+        for (Map.Entry<String, Object> entry : treeMap2.entrySet()) {
+            keysFromBothFile.put(entry.getKey(), entry.getValue());
+        }
+//////
         List<Map<String, Object>> diffList = new LinkedList<>();
 
         for (Map.Entry<String, Object> entry : keysFromBothFile.entrySet()) {
