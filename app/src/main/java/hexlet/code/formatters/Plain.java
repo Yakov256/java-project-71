@@ -20,13 +20,6 @@ public class Plain {
         }
     }
 
-    private static String getStringOrComplexValue(Object value) {
-        if (value == null) {
-            return null;
-        }
-        return getPlainFormattedString(value);
-    }
-
     public static String getFormattedDiffers(List<Map<String, Object>> diffs) {
         StringBuilder rezStr = new StringBuilder();
 
@@ -36,12 +29,12 @@ public class Plain {
                 rezStr.append("\n");
             } else if (diff.get("Difference") == DiffersStates.updated) {
                 rezStr.append("Property '" + diff.get("key") + "' was updated. From "
-                        + getStringOrComplexValue(diff.get("file1Value"))
-                        + " to " + getStringOrComplexValue(diff.get("file2Value")));
+                        + getPlainFormattedString(diff.get("file1Value"))
+                        + " to " + getPlainFormattedString(diff.get("file2Value")));
                 rezStr.append("\n");
             } else if (diff.get("Difference") == DiffersStates.added) {
                 rezStr.append("Property '" + diff.get("key") + "' was added with value: "
-                        + getStringOrComplexValue(diff.get("file2Value")));
+                        + getPlainFormattedString(diff.get("file2Value")));
                 rezStr.append("\n");
             }
         }

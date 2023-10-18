@@ -42,22 +42,6 @@ public class Utils {
 
         return strFromFile;
     }
-    /*
-
-    private static void addKeysFromMapAndFixNull(Map<String, Object> mapForAdding, Map<String, Object> map) {
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-
-            //
-            mapForAdding.put(entry.getKey(), entry.getValue());
-            /*if (entry.getValue() == null) {
-                mapForAdding.put(entry.getKey(), "null");
-                map.put(entry.getKey(), "null");
-            } else {
-                mapForAdding.put(entry.getKey(), entry.getValue());
-            }*/
-   /*     }
-    }
-    */
 
     public static DiffersStates getLineDifferencesState(Object map1Value, Object map2Value) {
 
