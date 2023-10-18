@@ -13,12 +13,12 @@ import java.util.concurrent.Callable;
 public final class App implements Callable<Integer> {
 
     @Parameters(index = "0", description = "path to first file",
-            defaultValue = "/home/yakov/IdeaProjects/java-project-71/app/src/main/resources/file1.json")
+            defaultValue = "file1.json")
             //defaultValue = "")
     private File filepath1 = new File("");
 
     @Parameters(index = "1", description = "path to second file",
-            defaultValue = "/home/yakov/IdeaProjects/java-project-71/app/src/main/resources/file2.json")
+            defaultValue = "file2.json")
             //defaultValue = "")
     private File filepath2 = new File("");
 
@@ -32,9 +32,6 @@ public final class App implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        //System.out.println("Working Directory: " + System.getProperty("user.dir"));
-        //filepath1 = new File(System.getProperty("user.dir") + "//" + filepath1.getPath());
-        //System.out.println("File 1: " + filepath1);
 
         String rezStr = "";
         try {

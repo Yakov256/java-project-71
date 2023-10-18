@@ -8,19 +8,6 @@ import static hexlet.code.Parser.getTreeMap;
 import static hexlet.code.Utils.readStringFromFile;
 
 public class Differ {
-/* Вынес в отдельный класс Utils
-    public static String readStringFromFile(String filePath) {
-
-        String strFromFile = "";
-        try {
-            strFromFile = new String(Files.readAllBytes(Paths.get(filePath)));
-        } catch (IOException e) {
-            System.out.println("Could not read file: " + filePath);
-            System.out.println(e.getMessage());
-        }
-
-        return strFromFile;
-    }*/
 
     private static String getFormatName(String filePath) {
         String formatName = "";

@@ -16,9 +16,6 @@ public final class DifferTest {
 
     @BeforeAll
     static void loadAllReferenceStrings() {
-        //stylishFormatReferenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
-         //       + "/src/test/resources/StylishFormatReferenceStr.txt");
-
         stylishFormatReferenceStr = Utils.readStringFromFile("StylishFormatReferenceStr.txt");
         plainFormatReferenceStr = Utils.readStringFromFile("PlainFormatReferenceStr.txt");
         jsonFormatReferenceStr = Utils.readStringFromFile("JsonFormatReferenceStr.txt");
