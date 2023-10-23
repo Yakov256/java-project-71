@@ -1,25 +1,25 @@
+build:
+	make -C app build
+
 run-dist:
-	@./app/build/install/app/bin/app
+	make -C app run-dist
+
+test:
+	make -C app test
+
+report:
+	make -C app report
+
+lint:
+	make -C app lint
 
 help:
 	@./app/build/install/app/bin/app -h
 
 clean:
-	./app/gradlew clean
+	make -C app clean
 
 install:
-	./app/gradlew clean install
-
-lint:
-	./app/gradlew checkstyleMain checkstyleTest
-
-test:
-	./app/gradlew test
-
-build:
-	./app/gradlew clean build
-
-report:
-	./app/gradlew jacocoTestReport
+	make -C app clean install
 
 .PHONY: build
