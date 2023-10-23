@@ -6,7 +6,6 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class Parser {
 
@@ -22,10 +21,8 @@ public class Parser {
     }
 
     public static Map<String, Object> getTreeMap(String strFromFile, String formatName) throws IOException {
-        TreeMap<String, Object> rezTreeMap;
         ObjectMapper mapper = getObjectMapper(formatName);
-        rezTreeMap = mapper.readValue(strFromFile, new TypeReference<>() { });
-        return rezTreeMap;
+        return mapper.readValue(strFromFile, new TypeReference<>() { });
     }
 
 }
