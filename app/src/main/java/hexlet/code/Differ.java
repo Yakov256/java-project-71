@@ -28,12 +28,7 @@ public class Differ {
         return Formatter.getFormattedString(treeMapsDifferences, formatName);
     }
 
-    // Для тестов hexlet check, без этого метода не проходят
     public static String generate(String filePath1, String filePath2) throws IOException {
-        Map<String, Object> treeMap1 = getTreeMap(readStringFromFile(filePath1), getFormatName(filePath1));
-        Map<String, Object> treeMap2 = getTreeMap(readStringFromFile(filePath2), getFormatName(filePath2));
-
-        List<Map<String, Object>> listMapsDifferences = Utils.getTreeMapsDifferencesList(treeMap1, treeMap2);
-        return Formatter.getFormattedString(listMapsDifferences, "stylish");
+        return generate(filePath1, filePath2, "stylish");
     }
 }

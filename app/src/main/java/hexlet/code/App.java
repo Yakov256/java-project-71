@@ -33,15 +33,13 @@ public final class App implements Callable<Integer> {
     @Override
     public Integer call() {
 
-        String rezStr = "";
         try {
-            rezStr = Differ.generate(filepath1.toString(), filepath2.toString(), format.toLowerCase());
+            System.out.println(Differ.generate(filepath1.toString(), filepath2.toString(), format.toLowerCase()));
+            return 0;
         } catch (IOException e) {
             System.out.println(e.getMessage());
             return 1;
         }
 
-        System.out.println(rezStr);
-        return 0;
     }
 }
