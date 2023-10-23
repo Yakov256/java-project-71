@@ -3,10 +3,10 @@ package hexlet.code;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Map;
-import java.util.LinkedHashMap;
 import java.util.TreeMap;
-import java.util.LinkedList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /*
@@ -89,7 +89,7 @@ public class Utils {
         keysFromBothFile.putAll(treeMap1);
         keysFromBothFile.putAll(treeMap2);
 
-        List<Map<String, Object>> diffList = new LinkedList<>();
+        List<Map<String, Object>> diffList = new ArrayList<>();
         for (Map.Entry<String, Object> entry : keysFromBothFile.entrySet()) {
             map1Value = treeMap1.get(entry.getKey());
             map2Value = treeMap2.get(entry.getKey());
