@@ -8,6 +8,11 @@ import java.util.Map;
 public class Plain {
 
     private static String getPlainFormattedString(Object value) {
+
+        if (value == null) { ///***
+            return null;
+        }
+
         if (value.toString().contains("[") || value.toString().contains("{")) {
             return "[complex value]";
         } else if (value instanceof String) {

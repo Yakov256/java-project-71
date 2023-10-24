@@ -1,9 +1,9 @@
 [
 {"key":"chars1","Difference":"notChanged","file1Value":["a","b","c"],"file2Value":["a","b","c"]},
-{"Difference":"updated","key":"chars2","file1Value":["d","e","f"],"file2Value":false},
+{"key":"chars2","Difference":"updated","file1Value":["d","e","f"],"file2Value":false},
 {"key":"checked","Difference":"updated","file1Value":false,"file2Value":true},
-{"key":"default","Difference":"updated","file1Value":"null","file2Value":["value1","value2"]},
-{"key":"id","Difference":"updated","file1Value":45,"file2Value":"null"},
+{"key":"default","Difference":"updated","file1Value":null,"file2Value":["value1","value2"]},
+{"key":"id","Difference":"updated","file1Value":45,"file2Value":null},
 {"key":"key1","Difference":"removed","file1Value":"value1","file2Value":null},
 {"key":"key2","Difference":"added","file1Value":null,"file2Value":"value2"},
 {"key":"numbers1","Difference":"notChanged","file1Value":[1,2,3,4],"file2Value":[1,2,3,4]},
