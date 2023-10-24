@@ -1,6 +1,6 @@
 [
 {"key":"chars1","Difference":"notChanged","file1Value":["a","b","c"],"file2Value":["a","b","c"]},
-{"key":"chars2","Difference":"updated","file1Value":["d","e","f"],"file2Value":false},
+{"Difference":"updated","key":"chars2","file1Value":["d","e","f"],"file2Value":false},
 {"key":"checked","Difference":"updated","file1Value":false,"file2Value":true},
 {"key":"default","Difference":"updated","file1Value":null,"file2Value":["value1","value2"]},
 {"key":"id","Difference":"updated","file1Value":45,"file2Value":null},

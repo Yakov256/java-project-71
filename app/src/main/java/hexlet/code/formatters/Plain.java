@@ -9,20 +9,16 @@ public class Plain {
 
     private static String getPlainFormattedString(Object value) {
 
-        if (value == null) { ///***
+        if (value == null) {
             return null;
-        }
-
-        if (value.toString().contains("[") || value.toString().contains("{")) {
+        } else if (value.toString().contains("[") || value.toString().contains("{")) {
             return "[complex value]";
         } else if (value instanceof String) {
-            if (value.equals("null")) {
-                return null;
-            }
             return "'" + value + "'";
         } else {
             return value.toString();
         }
+
     }
 
     public static String getFormattedDiffers(List<Map<String, Object>> diffs) {
