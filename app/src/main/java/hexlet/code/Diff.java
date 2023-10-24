@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.ArrayList;
-import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.Set;
 
 public class Diff {
 
-    public static DiffersStates getLineDifferencesState(Object map1Value, Object map2Value) {
+    /*public static DiffersStates getLineDifferencesState(Object map1Value, Object map2Value) {
         if (map1Value == null) {
             if (map2Value != null) {
                 return DiffersStates.added;
@@ -20,7 +21,7 @@ public class Diff {
         }
 
         return DiffersStates.notChanged;
-    }
+    }*/
 
     public static List<Map<String, Object>> getTreeMapsDifferencesList(Map<String, Object> treeMap1,
                                                                        Map<String, Object> treeMap2) {
@@ -39,18 +40,26 @@ public class Diff {
             }
         }
 
-        Map<String, Object> keysFromBothFile = new TreeMap<>();
-        keysFromBothFile.putAll(treeMap1);
-        keysFromBothFile.putAll(treeMap2);
+        Set<String> keySet = new TreeSet<>(treeMap1.keySet());
+        keySet.addAll(treeMap2.keySet());
 
         List<Map<String, Object>> diffList = new ArrayList<>();
-        for (Map.Entry<String, Object> entry : keysFromBothFile.entrySet()) {
-            map1Value = treeMap1.get(entry.getKey());
-            map2Value = treeMap2.get(entry.getKey());
+        for (String entry : keySet) {
+            map1Value = treeMap1.get(entry);
+            map2Value = treeMap2.get(entry);
+
+            DiffersStates differencesState = DiffersStates.notChanged;
+            if (map1Value == null & map2Value != null) {
+                differencesState = DiffersStates.added;
+            } else if (map2Value == null) {
+                differencesState = DiffersStates.removed;
+            } else if (!map1Value.equals(map2Value)) {
+                differencesState = DiffersStates.updated;
+            }
 
             Map<String, Object> diffmap = new LinkedHashMap<>();
-            diffmap.put("key", entry.getKey());
-            diffmap.put("Difference", getLineDifferencesState(map1Value, map2Value));
+            diffmap.put("key", entry);
+            diffmap.put("Difference", differencesState);
             diffmap.put("file1Value", map1Value);
             diffmap.put("file2Value", map2Value);
             diffList.add(diffmap);
