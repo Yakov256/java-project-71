@@ -1,10 +1,7 @@
 package hexlet.code;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,6 +22,7 @@ import java.util.List;
 
 public class Utils {
 
+    /*
     public static String readStringFromFile(String fileNameOrFullPath) {
         String filePath;
         if (fileNameOrFullPath.contains("/")) {
@@ -46,6 +44,8 @@ public class Utils {
 
         return strFromFile;
     }
+
+     */
 
     public static DiffersStates getLineDifferencesState(Object map1Value, Object map2Value) {
         if (map1Value == null) {

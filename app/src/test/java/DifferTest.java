@@ -2,10 +2,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hexlet.code.Differ;
-import hexlet.code.Utils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class DifferTest {
@@ -15,10 +16,19 @@ public final class DifferTest {
     private static String jsonFormatReferenceStr;
 
     @BeforeAll
-    static void loadAllReferenceStrings() {
-        stylishFormatReferenceStr = Utils.readStringFromFile("StylishFormatReferenceStr.txt");
-        plainFormatReferenceStr = Utils.readStringFromFile("PlainFormatReferenceStr.txt");
-        jsonFormatReferenceStr = Utils.readStringFromFile("JsonFormatReferenceStr.txt");
+    static void loadAllReferenceStrings() throws IOException {
+        //stylishFormatReferenceStr = Differ.readStringFromFile("StylishFormatReferenceStr.txt");
+        //plainFormatReferenceStr = Differ.readStringFromFile("PlainFormatReferenceStr.txt");
+        //jsonFormatReferenceStr = Differ.readStringFromFile("JsonFormatReferenceStr.txt");
+
+        stylishFormatReferenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
+                + "/src/test/resources/" + "StylishFormatReferenceStr.txt");
+
+        plainFormatReferenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
+                + "/src/test/resources/" + "PlainFormatReferenceStr.txt");
+
+        jsonFormatReferenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
+                + "/src/test/resources/" + "JsonFormatReferenceStr.txt");
     }
 
     String getTestStr(String filename1, String filename2, String format) {
