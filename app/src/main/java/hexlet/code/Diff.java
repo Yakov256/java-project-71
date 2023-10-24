@@ -1,12 +1,12 @@
 package hexlet.code;
 
+import java.util.List;
 import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.ArrayList;
 import java.util.TreeMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 
-public class Utils {
+public class Diff {
 
     public static DiffersStates getLineDifferencesState(Object map1Value, Object map2Value) {
         if (map1Value == null) {

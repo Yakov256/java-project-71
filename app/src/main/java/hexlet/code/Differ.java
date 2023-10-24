@@ -31,7 +31,7 @@ public class Differ {
         Map<String, Object> treeMap1 = getTreeMap(readStringFromFile(filePath1), getFormatName(filePath1));
         Map<String, Object> treeMap2 = getTreeMap(readStringFromFile(filePath2), getFormatName(filePath2));
 
-        List<Map<String, Object>> treeMapsDifferences = Utils.getTreeMapsDifferencesList(treeMap1, treeMap2);
+        List<Map<String, Object>> treeMapsDifferences = Diff.getTreeMapsDifferencesList(treeMap1, treeMap2);
         return Formatter.getFormattedString(treeMapsDifferences, formatName);
     }
 
