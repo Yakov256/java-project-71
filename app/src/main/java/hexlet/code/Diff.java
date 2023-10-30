@@ -17,13 +17,13 @@ public class Diff {
         List<Map<String, Object>> diffList = new ArrayList<>();
         for (String entry : keySet) {
             DiffersStates differencesState = DiffersStates.notChanged;
-            if (treeMap1.containsKey(entry) & !treeMap2.containsKey(entry)) {
+            if (treeMap1.containsKey(entry) && !treeMap2.containsKey(entry)) {
                 differencesState = DiffersStates.removed;
-            } else if (treeMap2.containsKey(entry) & !treeMap1.containsKey(entry)) {
+            } else if (treeMap2.containsKey(entry) && !treeMap1.containsKey(entry)) {
                 differencesState = DiffersStates.added;
             } else if (treeMap1.get(entry) != treeMap2.get(entry)) {
                 differencesState = DiffersStates.updated;
-                if (treeMap1.get(entry) != null & treeMap2.get(entry) != null) {
+                if (treeMap1.get(entry) != null && treeMap2.get(entry) != null) {
                     if (treeMap1.get(entry).equals(treeMap2.get(entry))) {
                         differencesState = DiffersStates.notChanged;
                     }
