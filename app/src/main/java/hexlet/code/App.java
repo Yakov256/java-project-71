@@ -22,7 +22,7 @@ public final class App implements Callable<Integer> {
     private File filepath2 = new File("");
 
     @CommandLine.Option(names = {"-f", "--format"}, description = "[default: stylish]")
-    private String format = "";
+    private String format = "stylish";
 
     public static void main(String... args) {
         int exitCode = new CommandLine(new App()).execute(args);
