@@ -5,7 +5,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "0.7",
@@ -36,7 +35,7 @@ public final class App implements Callable<Integer> {
         try {
             System.out.println(Differ.generate(filepath1.toString(), filepath2.toString(), format.toLowerCase()));
             return 0;
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return 1;
         }
