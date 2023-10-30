@@ -11,12 +11,13 @@ import java.util.Map;
 public class Formatter {
 
     public static String getFormattedString(List<Map<String, Object>> diffs, String formatName)
-            throws JsonProcessingException {
+            throws JsonProcessingException, IllegalArgumentException {
 
         return switch (formatName) {
             case "plain" -> Plain.getFormattedDiffers(diffs);
             case "json"  -> Json.getFormattedDiffers(diffs);
-            default      -> Stylish.getFormattedDiffers(diffs);
+            case "stylish" -> Stylish.getFormattedDiffers(diffs);
+            default -> throw new IllegalArgumentException("Illegal format: " + formatName);
         };
 
     }
