@@ -17,21 +17,18 @@ public final class DifferTest {
 
     @BeforeAll
     static void loadAllReferenceStrings() throws IOException {
-        stylishFormatReferenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
-                + "/src/test/resources/" + "StylishFormatReferenceStr.txt");
-        plainFormatReferenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
-                + "/src/test/resources/" + "PlainFormatReferenceStr.txt");
-        jsonFormatReferenceStr = Differ.readStringFromFile(System.getProperty("user.dir")
-                + "/src/test/resources/" + "JsonFormatReferenceStr.txt");
+        stylishFormatReferenceStr = Differ.readStringFromFile(getTestFilePath("StylishFormatReferenceStr.txt"));
+        plainFormatReferenceStr = Differ.readStringFromFile(getTestFilePath("PlainFormatReferenceStr.txt"));
+        jsonFormatReferenceStr = Differ.readStringFromFile(getTestFilePath("JsonFormatReferenceStr.txt"));
     }
 
-    /*static String getTestFilePath(String filename) {
+    static String getTestFilePath(String filename) {
         return System.getProperty("user.dir") + "/src/test/resources/" + filename;
-    }*/
+    }
 
     String getTestStr(String filename1, String filename2, String format) {
-        String filepath1 = System.getProperty("user.dir") + "/src/test/resources/" + filename1;
-        String filepath2 = System.getProperty("user.dir") + "/src/test/resources/" + filename2;
+        String filepath1 = getTestFilePath(filename1);
+        String filepath2 = getTestFilePath(filename2);
 
         String testStr = "";
         try {
