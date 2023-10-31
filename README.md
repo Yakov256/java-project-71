@@ -20,6 +20,7 @@
 [Step 9 - Plain formatter](https://asciinema.org/a/6ee105GQ7ktolOGFvHXroR717)  
 [Step 10 - Json formatter](https://asciinema.org/a/gqaCr9O7AGP4KkmPIUAi1KqUD)  
 
+
 ***Сборка***
 | Описание | Команда |
 |----------|--------|
