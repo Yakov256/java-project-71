@@ -18,35 +18,25 @@ public class Diff {
         List<Map<String, Object>> diffList = new ArrayList<>();
         for (String entry : keySet) {
             DiffersStates differencesState = DiffersStates.notChanged;
-            //if (treeMap1.containsKey(entry) && !treeMap2.containsKey(entry)) {
             if (!treeMap2.containsKey(entry)) {
                 differencesState = DiffersStates.removed;
-            //} else if (treeMap2.containsKey(entry) && !treeMap1.containsKey(entry)) {
             } else if (!treeMap1.containsKey(entry)) {
                 differencesState = DiffersStates.added;
-            //------
             } else if (!Objects.equals(treeMap1.get(entry), treeMap2.get(entry))) {
                 differencesState = DiffersStates.updated;
             }
-            /*} else if (treeMap1.get(entry) != treeMap2.get(entry)) {
-                differencesState = DiffersStates.updated;
-                if (treeMap1.get(entry) != null && treeMap2.get(entry) != null) {
-                    if (treeMap1.get(entry).equals(treeMap2.get(entry))) {
-                        differencesState = DiffersStates.notChanged;
-                    }
-                }
-            }*/
 
             Map<String, Object> diffmap = new LinkedHashMap<>();
             diffmap.put("key", entry);
             diffmap.put("Difference", differencesState);
-            diffmap.put("file1Value", treeMap1.get(entry));
-            //if (differencesState != DiffersStates.notChanged) {
-            diffmap.put("file2Value", treeMap2.get(entry));
-            //}
+            diffmap.put("value", treeMap1.get(entry));
+            if (differencesState == DiffersStates.added || differencesState == DiffersStates.updated) {
+                diffmap.put("newValue", treeMap2.get(entry));
+            }
             diffList.add(diffmap);
         }
 
+        //System.out.println(diffList);
         return diffList;
     }
 

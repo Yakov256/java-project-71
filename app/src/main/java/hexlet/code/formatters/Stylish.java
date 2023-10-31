@@ -10,13 +10,13 @@ public class Stylish {
 
         for (Map diff: diffs) {
             switch (diff.get("Difference").toString()) {
-                case "removed"    -> rezStr.append("  - " + diff.get("key") + ": " + diff.get("file1Value") + "\n");
-                case "notChanged" -> rezStr.append("    " + diff.get("key") + ": " + diff.get("file1Value") + "\n");
+                case "removed"    -> rezStr.append("  - " + diff.get("key") + ": " + diff.get("value") + "\n");
+                case "notChanged" -> rezStr.append("    " + diff.get("key") + ": " + diff.get("value") + "\n");
                 case "updated"  -> {
-                    rezStr.append("  - " + diff.get("key") + ": " + diff.get("file1Value") + "\n");
-                    rezStr.append("  + " + diff.get("key") + ": " + diff.get("file2Value") + "\n");
+                    rezStr.append("  - " + diff.get("key") + ": " + diff.get("value") + "\n");
+                    rezStr.append("  + " + diff.get("key") + ": " + diff.get("newValue") + "\n");
                 }
-                default  -> rezStr.append("  + " + diff.get("key") + ": " + diff.get("file2Value") + "\n");
+                default  -> rezStr.append("  + " + diff.get("key") + ": " + diff.get("newValue") + "\n");
             }
         }
 

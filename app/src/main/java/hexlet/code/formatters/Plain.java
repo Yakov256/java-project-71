@@ -30,12 +30,12 @@ public class Plain {
                 rezStr.append("\n");
             } else if (diff.get("Difference") == DiffersStates.updated) {
                 rezStr.append("Property '" + diff.get("key") + "' was updated. From "
-                        + getPlainFormattedString(diff.get("file1Value"))
-                        + " to " + getPlainFormattedString(diff.get("file2Value")));
+                        + getPlainFormattedString(diff.get("value"))
+                        + " to " + getPlainFormattedString(diff.get("newValue")));
                 rezStr.append("\n");
             } else if (diff.get("Difference") == DiffersStates.added) {
                 rezStr.append("Property '" + diff.get("key") + "' was added with value: "
-                        + getPlainFormattedString(diff.get("file2Value")));
+                        + getPlainFormattedString(diff.get("newValue")));
                 rezStr.append("\n");
             }
         }
