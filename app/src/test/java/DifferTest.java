@@ -40,6 +40,20 @@ public final class DifferTest {
         return testStr;
     }
 
+    String getTestStr(String filename1, String filename2) {
+        String filepath1 = getTestFilePath(filename1);
+        String filepath2 = getTestFilePath(filename2);
+
+        String testStr = "";
+        try {
+            testStr = Differ.generate(filepath1, filepath2);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return testStr;
+    }
+
     @Test
     void jsonToStylishFormatTest() {
         String rezStr = getTestStr("file1.json", "file2.json", "stylish");
@@ -80,6 +94,17 @@ public final class DifferTest {
         JsonNode tree1 = mapper.readTree(jsonFormatReferenceStr);
         JsonNode tree2 = mapper.readTree(rezStr);
         assertEquals(tree1, tree2);
+    }
+
+    void jsonToDefaultFormatTest() {
+        String rezStr = getTestStr("file1.json", "file2.json");
+        assertEquals(stylishFormatReferenceStr, rezStr);
+    }
+
+    @Test
+    void ymlToDefaultFormatTest() {
+        String rezStr = getTestStr("file1.yml", "file2.yml");
+        assertEquals(stylishFormatReferenceStr, rezStr);
     }
 
 }
