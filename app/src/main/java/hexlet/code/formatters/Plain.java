@@ -26,17 +26,14 @@ public class Plain {
 
         for (Map diff : diffs) {
             if (diff.get("Difference") == DiffersStates.removed) {
-                rezStr.append("Property '" + diff.get("key") + "' was removed");
-                rezStr.append("\n");
+                rezStr.append("Property '" + diff.get("key") + "' was removed" + "\n");
             } else if (diff.get("Difference") == DiffersStates.updated) {
                 rezStr.append("Property '" + diff.get("key") + "' was updated. From "
-                        + getPlainFormattedString(diff.get("file1Value"))
-                        + " to " + getPlainFormattedString(diff.get("file2Value")));
-                rezStr.append("\n");
+                        + getPlainFormattedString(diff.get("file1Value")) + " to "
+                        + getPlainFormattedString(diff.get("file2Value")) + "\n");
             } else if (diff.get("Difference") == DiffersStates.added) {
                 rezStr.append("Property '" + diff.get("key") + "' was added with value: "
-                        + getPlainFormattedString(diff.get("value")));
-                rezStr.append("\n");
+                        + getPlainFormattedString(diff.get("value")) + "\n");
             }
         }
 

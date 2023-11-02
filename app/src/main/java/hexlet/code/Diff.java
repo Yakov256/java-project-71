@@ -42,23 +42,8 @@ public class Diff {
             } else if (!Objects.equals(treeMap1.get(entry), treeMap2.get(entry))) {
                 differencesState = DiffersStates.updated;
             }
-//----
-            /*Map<String, Object> diffmap = new LinkedHashMap<>();
-            diffmap.put("key", entry);
-            diffmap.put("Difference", differencesState);
-            if (differencesState == DiffersStates.updated) {
-                diffmap.put("file1Value", treeMap1.get(entry));
-                diffmap.put("file2Value", treeMap2.get(entry));
-            } else if (differencesState == DiffersStates.added) {
-                diffmap.put("value", treeMap2.get(entry));
-            } else  {
-                diffmap.put("value", treeMap1.get(entry));
-
-            diffList.add(diffmap);
-            }*/
 
             diffList.add(getDiffmap(entry, treeMap1.get(entry), treeMap2.get(entry), differencesState));
-//----
         }
 
         return diffList;
