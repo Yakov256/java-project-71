@@ -16,7 +16,7 @@ public class Differ {
         return Files.readString(absolutePath);
     }
 
-    private static String getFormatName(String filePath) {
+    /*private static String getFormatName(String filePath) {
         String formatName = "";
         if (filePath.endsWith("json")) {
             formatName = "json";
@@ -25,6 +25,15 @@ public class Differ {
         }
 
         return formatName;
+    }*/
+
+    private static String getFormatName(String filePath) {
+        String[] extArray = filePath.split("\\.");
+        if (extArray.length > 0) {
+            return extArray[extArray.length - 1];
+        } else {
+            return "";
+        }
     }
 
     public static String generate(String filePath1, String filePath2, String formatName) throws IOException {
