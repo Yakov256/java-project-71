@@ -16,17 +16,6 @@ public class Differ {
         return Files.readString(absolutePath);
     }
 
-    /*private static String getFormatName(String filePath) {
-        String formatName = "";
-        if (filePath.endsWith("json")) {
-            formatName = "json";
-        } else if (filePath.endsWith("yml") || filePath.endsWith("yaml")) {
-            formatName = "yml";
-        }
-
-        return formatName;
-    }*/
-
     private static String getFormatName(String filePath) {
         String[] extArray = filePath.split("\\.");
         if (extArray.length > 0) {
