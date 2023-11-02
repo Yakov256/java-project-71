@@ -16,7 +16,7 @@ public class Stylish {
                     rezStr.append("  - " + diff.get("key") + ": " + diff.get("file1Value") + "\n");
                     rezStr.append("  + " + diff.get("key") + ": " + diff.get("file2Value") + "\n");
                 }
-                default  -> rezStr.append("  + " + diff.get("key") + ": " + diff.get("file2Value") + "\n");
+                default  -> rezStr.append("  + " + diff.get("key") + ": " + diff.get("value") + "\n");
             }
         }
 

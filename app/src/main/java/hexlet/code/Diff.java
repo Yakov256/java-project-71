@@ -29,10 +29,12 @@ public class Diff {
             Map<String, Object> diffmap = new LinkedHashMap<>();
             diffmap.put("key", entry);
             diffmap.put("Difference", differencesState);
-            if (differencesState == DiffersStates.added || differencesState == DiffersStates.updated) {
+            if (differencesState == DiffersStates.updated) {
                 diffmap.put("file1Value", treeMap1.get(entry));
                 diffmap.put("file2Value", treeMap2.get(entry));
-            } else {
+            } else if (differencesState == DiffersStates.added) {
+                diffmap.put("value", treeMap2.get(entry));
+            } else  {
                 diffmap.put("value", treeMap1.get(entry));
             }
             diffList.add(diffmap);

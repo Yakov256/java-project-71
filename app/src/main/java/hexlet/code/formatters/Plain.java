@@ -35,7 +35,7 @@ public class Plain {
                 rezStr.append("\n");
             } else if (diff.get("Difference") == DiffersStates.added) {
                 rezStr.append("Property '" + diff.get("key") + "' was added with value: "
-                        + getPlainFormattedString(diff.get("file2Value")));
+                        + getPlainFormattedString(diff.get("value")));
                 rezStr.append("\n");
             }
         }
