@@ -5,6 +5,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,9 +19,14 @@ public final class DifferTest {
 
     @BeforeAll
     static void loadAllReferenceStrings() throws IOException {
-        stylishFormatReferenceStr = Differ.readStringFromFile(getTestFilePath("StylishFormatReferenceStr.txt"));
-        plainFormatReferenceStr = Differ.readStringFromFile(getTestFilePath("PlainFormatReferenceStr.txt"));
-        jsonFormatReferenceStr = Differ.readStringFromFile(getTestFilePath("JsonFormatReferenceStr.txt"));
+        stylishFormatReferenceStr = readStringFromFile(getTestFilePath("StylishFormatReferenceStr.txt"));
+        plainFormatReferenceStr = readStringFromFile(getTestFilePath("PlainFormatReferenceStr.txt"));
+        jsonFormatReferenceStr = readStringFromFile(getTestFilePath("JsonFormatReferenceStr.txt"));
+    }
+
+    static String readStringFromFile(String fileNameOrFullPath) throws IOException {
+        Path absolutePath = Paths.get(fileNameOrFullPath).toAbsolutePath().normalize();
+        return Files.readString(absolutePath);
     }
 
     static String getTestFilePath(String filename) {

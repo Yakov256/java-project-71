@@ -11,7 +11,7 @@ import static hexlet.code.Parser.getDataStructureFromFile;
 
 public class Differ {
 
-    public static String readStringFromFile(String fileNameOrFullPath) throws IOException {
+    private static String readStringFromFile(String fileNameOrFullPath) throws IOException {
         Path absolutePath = Paths.get(fileNameOrFullPath).toAbsolutePath().normalize();
         return Files.readString(absolutePath);
     }
