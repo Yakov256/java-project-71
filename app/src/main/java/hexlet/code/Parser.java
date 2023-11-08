@@ -15,12 +15,14 @@ public class Parser {
             mapper = new ObjectMapper();
         } else if (formatName.endsWith("yml") || formatName.endsWith("yaml")) {
             mapper = new YAMLMapper();
+        } else {
+            throw new IllegalArgumentException("Illegal format: " + formatName);
         }
-
         return mapper;
     }
 
-    public static Map<String, Object> getTreeMap(String strFromFile, String formatName) throws IOException {
+    public static Map<String, Object> getDataStructureFromFile(String strFromFile,
+                                                               String formatName) throws IOException {
         ObjectMapper mapper = getObjectMapper(formatName);
         return mapper.readValue(strFromFile, new TypeReference<>() { });
     }

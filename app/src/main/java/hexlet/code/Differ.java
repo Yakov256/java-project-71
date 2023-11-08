@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-import static hexlet.code.Parser.getTreeMap;
+import static hexlet.code.Parser.getDataStructureFromFile;
 
 public class Differ {
 
@@ -26,8 +26,10 @@ public class Differ {
     }
 
     public static String generate(String filePath1, String filePath2, String formatName) throws IOException {
-        Map<String, Object> treeMap1 = getTreeMap(readStringFromFile(filePath1), getFormatName(filePath1));
-        Map<String, Object> treeMap2 = getTreeMap(readStringFromFile(filePath2), getFormatName(filePath2));
+        Map<String, Object> treeMap1 = getDataStructureFromFile(readStringFromFile(filePath1),
+                getFormatName(filePath1));
+        Map<String, Object> treeMap2 = getDataStructureFromFile(readStringFromFile(filePath2),
+                getFormatName(filePath2));
 
         List<Map<String, Object>> treeMapsDifferences = Diff.getTreeMapsDifferencesList(treeMap1, treeMap2);
         return Formatter.getFormattedString(treeMapsDifferences, formatName);
