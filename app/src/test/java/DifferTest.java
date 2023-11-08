@@ -1,4 +1,3 @@
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hexlet.code.Differ;
@@ -26,83 +25,76 @@ public final class DifferTest {
         return System.getProperty("user.dir") + "/src/test/resources/" + filename;
     }
 
-    String getTestStr(String filename1, String filename2, String format) {
+    String getTestStr(String filename1, String filename2, String format) throws IOException {
         String filepath1 = getTestFilePath(filename1);
         String filepath2 = getTestFilePath(filename2);
 
         String testStr = "";
-        try {
-            testStr = Differ.generate(filepath1, filepath2, format);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        testStr = Differ.generate(filepath1, filepath2, format);
 
         return testStr;
     }
 
-    String getTestStr(String filename1, String filename2) {
+    String getTestStr(String filename1, String filename2) throws IOException {
         String filepath1 = getTestFilePath(filename1);
         String filepath2 = getTestFilePath(filename2);
 
         String testStr = "";
-        try {
-            testStr = Differ.generate(filepath1, filepath2);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        testStr = Differ.generate(filepath1, filepath2);
 
         return testStr;
     }
 
     @Test
-    void jsonToStylishFormatTest() {
+    void jsonToStylishFormatTest() throws IOException {
         String rezStr = getTestStr("file1.json", "file2.json", "stylish");
         assertEquals(stylishFormatReferenceStr, rezStr);
     }
 
     @Test
-    void ymlToStylishFormatTest() {
+    void ymlToStylishFormatTest() throws IOException {
         String rezStr = getTestStr("file1.yml", "file2.yml", "stylish");
         assertEquals(stylishFormatReferenceStr, rezStr);
     }
 
     @Test
-    void jsonToPlainFormatTest() {
+    void jsonToPlainFormatTest() throws IOException {
         String rezStr = getTestStr("file1.json", "file2.json", "plain");
         assertEquals(plainFormatReferenceStr, rezStr);
     }
 
     @Test
-    void ymlToPlainFormatTest() {
+    void ymlToPlainFormatTest() throws IOException {
         String rezStr = getTestStr("file1.yml", "file2.yml", "plain");
         assertEquals(plainFormatReferenceStr, rezStr);
     }
 
     @Test
-    void jsonToJsonFormatTest() throws JsonProcessingException {
+    void jsonToJsonFormatTest() throws IOException {
         String rezStr = getTestStr("file1.json", "file2.json", "json");
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode tree1 = mapper.readTree(jsonFormatReferenceStr);
-        JsonNode tree2 = mapper.readTree(rezStr);
-        assertEquals(tree1, tree2);
+        JsonNode expected = mapper.readTree(jsonFormatReferenceStr);
+        JsonNode actual = mapper.readTree(rezStr);
+        assertEquals(expected, actual);
     }
 
     @Test
-    void ymlToJsonFormatTest() throws JsonProcessingException {
+    void ymlToJsonFormatTest() throws IOException {
         String rezStr = getTestStr("file1.yml", "file2.yml", "json");
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode tree1 = mapper.readTree(jsonFormatReferenceStr);
-        JsonNode tree2 = mapper.readTree(rezStr);
-        assertEquals(tree1, tree2);
+        JsonNode expected = mapper.readTree(jsonFormatReferenceStr);
+        JsonNode actual = mapper.readTree(rezStr);
+        assertEquals(expected, actual);
     }
 
-    void jsonToDefaultFormatTest() {
+    @Test
+    void jsonToDefaultFormatTest() throws IOException {
         String rezStr = getTestStr("file1.json", "file2.json");
         assertEquals(stylishFormatReferenceStr, rezStr);
     }
 
     @Test
-    void ymlToDefaultFormatTest() {
+    void ymlToDefaultFormatTest() throws IOException {
         String rezStr = getTestStr("file1.yml", "file2.yml");
         assertEquals(stylishFormatReferenceStr, rezStr);
     }
